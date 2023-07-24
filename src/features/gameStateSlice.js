@@ -8,6 +8,9 @@ export const gameStateSlice = createSlice({
     gameOver: true,
   },
   reducers: {
+    clearPlayers: (state) => {
+      state.currentPlayers = [];
+    },
     incrementPlayer: (state, action) => {
       state.currentPlayers.push(action.payload);
     },
@@ -28,6 +31,7 @@ export const gameStateSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  clearPlayers,
   incrementPlayer,
   deactivePlayer,
   switchDay,
