@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   clearPlayers,
   incrementPlayer,
-  deactivePlayer,
-  switchDay,
   switchGameOverFalse,
-  switchGameOverTrue,
 } from './features/gameStateSlice';
+import PlayerCard from './components/PlayerCard';
 
 function App() {
   const playersArr = useSelector((state) => state.gameState.currentPlayers);
@@ -40,17 +37,18 @@ function App() {
       );
     }
   }
+  // console.log(playersArr)
 
   return (
     <div className='App'>
       <header className='App-header'>
         <h1>Zombi Party</h1>
         <button onClick={initialize}>Enter Party</button>
-        <ul>
+        <div>
           {playersArr.map((player, index) => (
-            <li key={index}>{player.playerId}</li>
+            <PlayerCard playerId={player.playerId} role={player.role} key={player.playerId}/>
           ))}
-        </ul>
+        </div>
       </header>
     </div>
   );
