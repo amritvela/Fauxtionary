@@ -1,19 +1,25 @@
+import scientistImg from "./assets/mad_scientist.png";
+import doctorImg from "./assets/doctor.png";
+import busyBodyImg from "./assets/busy_body.png";
+import normalImg from "./assets/avatar_1.png";
+
 export const playersObject = {
   scientist: {
-    picture: 'url',
-    description: 'loreipsum',
+    picture: scientistImg,
+    description: 'Mad Scientist',
   },
   doctor: {
-    picture: 'url',
-    description: 'loreipsum',
+    picture: doctorImg,
+    description: 'Doctor',
   },
 
   busyBody: {
-    picture: 'url',
-    description: 'loreipsum',
+    picture: busyBodyImg,
+    description: 'Bosy Body',
   },
   normal: {
-    picture: 'url',
-    description: 'loreipsum',
+    picture: normalImg,
+    description: 'Normal',
   },
 };
+

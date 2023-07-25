@@ -5,7 +5,8 @@ export const gameStateSlice = createSlice({
   initialState: {
     currentPlayers: [],
     day: true,
-    gameOver: true,
+    startGame: true,
+    gameOver: false,
   },
   reducers: {
     clearPlayers: (state) => {
@@ -20,6 +21,9 @@ export const gameStateSlice = createSlice({
     switchDay: (state) => {
       state.day = !state.day;
     },
+    switchStartGame: (state) => {
+      state.gameOver = false;
+    },
     switchGameOverTrue: (state) => {
       state.gameOver = true;
     },
@@ -33,6 +37,7 @@ export const gameStateSlice = createSlice({
 export const {
   clearPlayers,
   incrementPlayer,
+  switchStartGame,
   deactivePlayer,
   switchDay,
   switchGameOverFalse,

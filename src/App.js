@@ -1,56 +1,61 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import PlayerCard from './components/PlayerCard';
 import {
+  switchDay,
   clearPlayers,
   incrementPlayer,
-  deactivePlayer,
-  switchDay,
   switchGameOverFalse,
-  switchGameOverTrue,
 } from './features/gameStateSlice';
 
 function App() {
+  
   const playersArr = useSelector((state) => state.gameState.currentPlayers);
-  console.log(playersArr);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch() 
 
-  function initialize() {
-    dispatch(clearPlayers());
-    dispatch(switchGameOverFalse());
-    // generate all the players
-    // const doctor = 3;
-    // const scientist = 4;
-    // const busyBody = 0;
-    for (let i = 0; i < 7; i++) {
-      let role = 'normal';
-      if (i === 3) {
-        role = 'doctor';
-      } else if (i === 4) {
-        role = 'scientist';
-      } else if (i === 0) {
-        role = 'busyBody';
+  const useGameMode = () => {
+    dispatch(switchDay());
+}
+
+  function HandleInitializePlayers() {
+      dispatch(clearPlayers());
+      dispatch(switchGameOverFalse());
+      // generate all the players
+      // const doctor = 3;
+      // const scientist = 4;
+      // const busyBody = 0;
+      for (let i = 0; i < 7; i++) {
+        let role = 'normal';
+        if (i === 3) {
+          role = 'doctor';
+        } else if (i === 4) {
+          role = 'scientist';
+        } else if (i === 0) {
+          role = 'busyBody';
+        }
+  
+        dispatch(
+          incrementPlayer({
+            playerId: i,
+            active: true,
+            role: role,
+          })
+        );
       }
-
-      dispatch(
-        incrementPlayer({
-          playerId: i,
-          active: true,
-          role: role,
-        })
-      );
+      
     }
-  }
 
   return (
     <div className='App'>
       <header className='App-header'>
         <h1>Zombi Party</h1>
-        <button onClick={initialize}>Enter Party</button>
-        <ul>
+        <button onClick={HandleInitializePlayers}>Enter Party</button>
+        <button onClick={useGameMode}>Switch Day</button>
+        <div>
           {playersArr.map((player, index) => (
-            <li key={index}>{player.playerId}</li>
+            <PlayerCard playerId={player.playerId} role={player.role} key={player.playerId}/>
           ))}
-        </ul>
+        </div>
       </header>
     </div>
   );
