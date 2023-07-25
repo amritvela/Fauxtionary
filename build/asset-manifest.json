@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e6c13ad2.css",
+    "main.js": "/static/js/main.a4e48be7.js",
+    "static/media/mad_scientist.png": "/static/media/mad_scientist.539634bf1403dde8fb58.png",
+    "static/media/busy_body.png": "/static/media/busy_body.e5f67f0a72ddb32893ad.png",
+    "static/media/doctor.png": "/static/media/doctor.517c4df8475409ac78b4.png",
+    "static/media/avatar_1.png": "/static/media/avatar_1.8f04a98bbb28710a97c7.png",
+    "index.html": "/index.html",
+    "main.e6c13ad2.css.map": "/static/css/main.e6c13ad2.css.map",
+    "main.a4e48be7.js.map": "/static/js/main.a4e48be7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.a4e48be7.js"
+  ]
+}
