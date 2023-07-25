@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   clearPlayers,
   incrementPlayer,
-  deactivePlayer,
   switchDay,
   switchGameOverFalse,
   switchGameOverTrue,
@@ -13,6 +12,10 @@ function App() {
   const playersArr = useSelector((state) => state.gameState.currentPlayers);
   console.log(playersArr);
   const dispatch = useDispatch();
+
+  function gameMode() {
+    dispatch(switchDay());
+  }
 
   function initialize() {
     dispatch(clearPlayers());
@@ -46,6 +49,7 @@ function App() {
       <header className='App-header'>
         <h1>Zombi Party</h1>
         <button onClick={initialize}>Enter Party</button>
+        <button onClick={gameMode}>Switch Day</button>
         <ul>
           {playersArr.map((player, index) => (
             <li key={index}>{player.playerId}</li>
