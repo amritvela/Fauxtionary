@@ -1,24 +1,23 @@
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PlayerCard from './components/PlayerCard';
 import {
+  switchDay,
   clearPlayers,
   incrementPlayer,
   switchGameOverFalse,
-  day
 } from './features/gameStateSlice';
 
 function App() {
+  
   const playersArr = useSelector((state) => state.gameState.currentPlayers);
+  const dispatch = useDispatch() 
 
-  function gameMode() {
-    const switchDay = useSelector((state) => state.day)
-    const dispatch = useDispatch() 
+  const useGameMode = () => {
     dispatch(switchDay());
 }
 
   function HandleInitializePlayers() {
-    const dispatch = useDispatch();
-
       dispatch(clearPlayers());
       dispatch(switchGameOverFalse());
       // generate all the players
@@ -51,7 +50,7 @@ function App() {
       <header className='App-header'>
         <h1>Zombi Party</h1>
         <button onClick={HandleInitializePlayers}>Enter Party</button>
-        <button onClick={gameMode}>Switch Day</button>
+        <button onClick={useGameMode}>Switch Day</button>
         <div>
           {playersArr.map((player, index) => (
             <PlayerCard playerId={player.playerId} role={player.role} key={player.playerId}/>
