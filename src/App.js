@@ -1,15 +1,20 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PlayerCard from './components/PlayerCard';
-import { useDispatch } from 'react-redux';
 import {
   clearPlayers,
   incrementPlayer,
   switchGameOverFalse,
+  day
 } from './features/gameStateSlice';
-import gameMode from './lib/gameMode';
 
 function App() {
   const playersArr = useSelector((state) => state.gameState.currentPlayers);
+
+  function gameMode() {
+    const switchDay = useSelector((state) => state.day)
+    const dispatch = useDispatch() 
+    dispatch(switchDay());
+}
 
   function HandleInitializePlayers() {
     const dispatch = useDispatch();
