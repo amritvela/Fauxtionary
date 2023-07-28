@@ -4,27 +4,18 @@ import {
   incrementPlayer,
   switchGameOverFalse,
 } from './features/gameStateSlice';
+const Rune = require('rune-games-sdk');
 
 Rune.initLogic({
-  minPlayers: 7,
-  maxPlayers: 7,
+  minPlayers: 4,
+  maxPlayers: 4,
   setup: () => {
     return {
       // Allow either player to start
       currentPlayers: [],
-      day: true,
       startGame: true,
-      activePlayers: 0,
       gameOver: false,
-
-      //key players still in the game
-      doctor: true,
-      scientist: true,
-      busybody: true,
-      //in each round who was voted to be eliminated, who was voted to be saved
-
-      //who was voted as the scientists
-      vote: Array(7).fill(null),
+      vote: Array(4).fill(null),
     };
   },
   actions: {
