@@ -12,7 +12,7 @@ function App() {
     import('./logic').then(() =>
       Rune.initClient({
         onChange: ({ newGame, players, yourPlayerId, action, event }) => {
-          console.log(newGame)
+          console.log(Rune.actions)
         },
       })
     )
