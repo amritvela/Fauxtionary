@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import PlayerCard from './components/PlayerCard';
+import PlayerCard from './components/WordCard';
 import {
   switchDay,
   clearPlayers,
