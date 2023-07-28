@@ -1,25 +1,25 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import PlayerCard from './components/WordCard';
-import {
-  switchDay,
-  clearPlayers,
-  incrementPlayer,
-  switchGameOverFalse,
-} from './features/gameStateSlice';
-const Rune = require('rune-games-sdk');
+import WordCard from './components/WordCard';
+import { switchDay, incrementPlayer } from './features/gameStateSlice';
+const { Rune } = window;
 
 function App() {
   const playersArr = useSelector((state) => state.gameState.currentPlayers);
   const dispatch = useDispatch();
-
+  // console.log(window);
   useEffect(() => {
     import('./logic').then(() =>
       Rune.initClient({
-        onChange: ({ newGame, players, yourPlayerId }) => {
-          // setGame(newGame);
-          // setPlayers(players);
+        onChange: ({ newGame, players, yourPlayerId, action, event }) => {
+          console.log({ newGame });
+          // setGame({ game: newGame, players, yourPlayerId });
+          console.log({ Rune });
           // setMyPlayerId(yourPlayerId);
+          // newGame.newPlayer(yourPlayerId);
+          console.log(`action`, action);
+          console.log(`event`, event);
+          console.log(newGame.playerScore);
         },
       })
     );
@@ -30,8 +30,8 @@ function App() {
   };
 
   function HandleInitializePlayers() {
-    dispatch(clearPlayers());
-    dispatch(switchGameOverFalse());
+    // dispatch(clearPlayers());
+    // dispatch(switchGameOverFalse());
     // generate all the players
     // const doctor = 3;
     // const scientist = 4;
@@ -59,12 +59,13 @@ function App() {
   return (
     <div className='App'>
       <header className='App-header'>
-        <h1>Zombi Party</h1>
+        <h1>Fauxtionary</h1>
+        <p>This is a game</p>
         <button onClick={HandleInitializePlayers}>Enter Party</button>
-        <button onClick={useGameMode}>Switch Day</button>
+        {/* <button onClick={useGameMode}>Switch Day</button> */}
         <div>
           {playersArr.map((player, index) => (
-            <PlayerCard
+            <WordCard
               playerId={player.playerId}
               role={player.role}
               key={player.playerId}
