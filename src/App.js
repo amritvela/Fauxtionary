@@ -1,33 +1,22 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import WordCard from './components/WordCard';
-import { switchDay, incrementPlayer } from './features/gameStateSlice';
-const { Rune } = window;
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import WordCard from './components/WordCard'
+import { switchDay, incrementPlayer } from './features/gameStateSlice'
+const { Rune } = window
 
 function App() {
-  const playersArr = useSelector((state) => state.gameState.currentPlayers);
-  const dispatch = useDispatch();
+  const playersArr = useSelector((state) => state.gameState.currentPlayers)
+  const dispatch = useDispatch()
   // console.log(window);
   useEffect(() => {
     import('./logic').then(() =>
       Rune.initClient({
         onChange: ({ newGame, players, yourPlayerId, action, event }) => {
-          console.log({ newGame });
-          // setGame({ game: newGame, players, yourPlayerId });
-          console.log({ Rune });
-          // setMyPlayerId(yourPlayerId);
-          // newGame.newPlayer(yourPlayerId);
-          console.log(`action`, action);
-          console.log(`event`, event);
-          console.log(newGame.playerScore);
+          console.log(newGame)
         },
       })
-    );
-  }, []);
-
-  const useGameMode = () => {
-    dispatch(switchDay());
-  };
+    )
+  }, [])
 
   function HandleInitializePlayers() {
     // dispatch(clearPlayers());
@@ -37,13 +26,13 @@ function App() {
     // const scientist = 4;
     // const busyBody = 0;
     for (let i = 0; i < 7; i++) {
-      let role = 'normal';
+      let role = 'normal'
       if (i === 3) {
-        role = 'doctor';
+        role = 'doctor'
       } else if (i === 4) {
-        role = 'scientist';
+        role = 'scientist'
       } else if (i === 0) {
-        role = 'busyBody';
+        role = 'busyBody'
       }
 
       dispatch(
@@ -52,7 +41,7 @@ function App() {
           active: true,
           role: role,
         })
-      );
+      )
     }
   }
 
@@ -74,7 +63,7 @@ function App() {
         </div>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

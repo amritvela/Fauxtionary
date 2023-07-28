@@ -1,11 +1,15 @@
-const { Rune } = window;
+const { Rune } = window
 
 Rune.initLogic({
   minPlayers: 4,
   maxPlayers: 4,
-  setup: () => {
+  setup: (allPlayerIds) => {
+    const scores = {}
+    for (let playerId of allPlayerIds) {
+      scores[playerId] = 0
+    }
     return {
-      playerScore: {},
+      scores,
       startGame: true,
       gameOver: false,
       judge: undefined,
@@ -13,20 +17,17 @@ Rune.initLogic({
       definitions: [],
       word: '',
       winner: '',
-    };
+    }
   },
   actions: {
     startGame: (_, { game }) => {
       if (!game.judge) {
-        game.judge = Math.floor(Math.random() * 3);
+        game.judge = Math.floor(Math.random() * 3)
       } else if (game.judge === 3) {
-        game.judge = 0;
+        game.judge = 0
       } else {
-        game.judge++;
+        game.judge++
       }
-    },
-    newPlayer: (playerId, { game }) => {
-      game.playerScore[playerId] = 0;
     },
     // incrementScore: () => {
     //   //adds scores to the winner
@@ -49,8 +50,11 @@ Rune.initLogic({
     // },
   },
   events: {
+    /**
+     * This callback runs when additional players join after the server is running.
+     */
     playerJoined: (playerId, { game }) => {
-      game.playerScore[playerId] = 0;
+      game.playerScore[playerId] = 0
     },
   },
-});
+})
