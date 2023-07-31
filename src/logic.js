@@ -1,51 +1,60 @@
-import {
-  switchDay,
-  clearPlayers,
-  incrementPlayer,
-  switchGameOverFalse,
-} from './features/gameStateSlice';
+const { Rune } = window;
 
 Rune.initLogic({
-  minPlayers: 7,
-  maxPlayers: 7,
-  setup: () => {
+  minPlayers: 4,
+  maxPlayers: 4,
+  setup: (allPlayerIds) => {
+    const scores = {};
+    for (let playerId of allPlayerIds) {
+      scores[playerId] = 0;
+    }
     return {
-      // Allow either player to start
-      currentPlayers: [],
-      day: true,
+      scores,
       startGame: true,
-      activePlayers: 0,
       gameOver: false,
-
-      //key players still in the game
-      doctor: true,
-      scientist: true,
-      busybody: true,
-      //in each round who was voted to be eliminated, who was voted to be saved
-
-      //who was voted as the scientists
-      vote: Array(7).fill(null),
+      judge: undefined,
+      pickedWords: new Set(),
+      definitions: [],
+      word: '',
+      winner: '',
     };
   },
   actions: {
-    startGame: ({ day }, { game, playerId }) => {
-      //game logic for day
-      //game logic for night
-      //   // Check it's not the other player's turn and unmarked cell
-      //   if (game.lastPlayerTurn !== playerId || game.cells[cellId]) {
-      //     throw Rune.invalidAction();
-      //   }
-      //   // Update cell and switch turn
-      //   game.cells[cellId] = playerId;
-      //   game.lastPlayerTurn = playerId;
-      // Determine if game has ended
-      //   const winner = isVictoryOrDraw(game);
-      //   if (winner !== undefined) {
-      //     Rune.gameOver();
-      //   }
+    startGame: (_, { game }) => {
+      if (!game.judge) {
+        game.judge = Math.floor(Math.random() * 3);
+      } else if (game.judge === 3) {
+        game.judge = 0;
+      } else {
+        game.judge++;
+      }
     },
-    events: (playerId, { game }) => {
-      //
+    // incrementScore: () => {
+    //   //adds scores to the winner
+    //   //check to see if anybody has reached 3, if so game ends
+    // },
+    // switchJudge: () => {
+    //   //if its undefined randomly pick a number from 0-3
+    //   //increment the judge if its 3 then set to 0
+    // },
+    // generateWord: () => {
+    //   //Math.trunc(math.random) from 0-100
+    //   //check to see if pickedWord set has that number. If it does pick another number again
+    //   //if not then put it into the set and spit out the word and add it to the word variable
+    // },
+    // storeDefinitions: () => {
+    //   //store all the inputs as objects in the definition array in game state
+    // },
+    // showDefinitions: () => {
+    //   //shows the definitions. WE MIGHT NOT NEED THIS.
+    // },
+  },
+  events: {
+    /**
+     * This callback runs when additional players join after the server is running.
+     */
+    playerJoined: (playerId, { game }) => {
+      game.playerScore[playerId] = 0;
     },
   },
 });

@@ -1,0 +1,2 @@
+(self.webpackChunkzombi_party=self.webpackChunkzombi_party||[]).push([[807],{807:function(){window.Rune.initLogic({minPlayers:4,maxPlayers:4,setup:function(){return{currentPlayers:[],startGame:!0,gameOver:!1,judge:void 0,pickedWords:new Set,definitions:[],word:"",winner:""}},actions:{startGame:function(e,n){var r=n.game;r.judge?3===r.judge?r.judge=0:r.judge++:r.judge=Math.floor(3*Math.random())}},events:{playerJoined:function(e,n){n.game.currentPlayers.push({playerId:e,score:0})}}})}}]);
+//# sourceMappingURL=807.6af454fe.chunk.js.map

@@ -1,60 +1,37 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import PlayerCard from './components/PlayerCard';
-import {
-  switchDay,
-  clearPlayers,
-  incrementPlayer,
-  switchGameOverFalse,
-} from './features/gameStateSlice';
+import React, { useEffect, useState } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import WordCard from './components/WordCard';
+import Scores from './components/Scores';
+import { switchDay, incrementPlayer } from './features/gameStateSlice';
+const { Rune } = window;
 
 function App() {
-  
-  const playersArr = useSelector((state) => state.gameState.currentPlayers);
-  const dispatch = useDispatch() 
-
-  const useGameMode = () => {
-    dispatch(switchDay());
-}
-
-  function HandleInitializePlayers() {
-      dispatch(clearPlayers());
-      dispatch(switchGameOverFalse());
-      // generate all the players
-      // const doctor = 3;
-      // const scientist = 4;
-      // const busyBody = 0;
-      for (let i = 0; i < 7; i++) {
-        let role = 'normal';
-        if (i === 3) {
-          role = 'doctor';
-        } else if (i === 4) {
-          role = 'scientist';
-        } else if (i === 0) {
-          role = 'busyBody';
-        }
-  
-        dispatch(
-          incrementPlayer({
-            playerId: i,
-            active: true,
-            role: role,
-          })
-        );
-      }
-      
-    }
+  const [gameState, setGameState] = useState({});
+  const [players, setPlayers] = useState({});
+  const [scores, setScores] = useState({});
+  // console.log(window);
+  useEffect(() => {
+    import('./logic').then(() =>
+      Rune.initClient({
+        onChange: (runeState) => {
+          // { newGame, players, yourPlayerId, action, event }
+          setGameState({ ...runeState });
+          setPlayers({ ...runeState.players });
+          setScores({ ...runeState.newGame.scores });
+        },
+      })
+    );
+  }, []);
+  // console.log(gameState);
+  console.log(`players`, players);
+  console.log(`scores`, scores);
 
   return (
     <div className='App'>
       <header className='App-header'>
-        <h1>Zombi Party</h1>
-        <button onClick={HandleInitializePlayers}>Enter Party</button>
-        <button onClick={useGameMode}>Switch Day</button>
+        <h1>Fauxtionary</h1>
         <div>
-          {playersArr.map((player, index) => (
-            <PlayerCard playerId={player.playerId} role={player.role} key={player.playerId}/>
-          ))}
+          <Scores players={players} scores={scores} />
         </div>
       </header>
     </div>
