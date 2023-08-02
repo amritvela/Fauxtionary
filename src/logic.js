@@ -13,8 +13,9 @@ Rune.initLogic({
       startGame: true,
       gameOver: false,
       judge: undefined,
-      pickedWords: new Set(),
+      pickedWords: {},
       definitions: [],
+      index: undefined,
       word: '',
       winner: '',
     };
@@ -37,11 +38,26 @@ Rune.initLogic({
     //   //if its undefined randomly pick a number from 0-3
     //   //increment the judge if its 3 then set to 0
     // },
-    // generateWord: () => {
-    //   //Math.trunc(math.random) from 0-100
-    //   //check to see if pickedWord set has that number. If it does pick another number again
-    //   //if not then put it into the set and spit out the word and add it to the word variable
-    // },
+    generateWord: (_, { game }) => {
+      //Math.trunc(math.random) from 0-100
+      let possibleIndex = Math.floor(Math.random() * 100);
+      console.log(game.pickedWords);
+      console.log(possibleIndex);
+      while (game.pickedWords[possibleIndex]) {
+        possibleIndex = Math.floor(Math.random() * 100);
+      }
+      game.pickedWords[possibleIndex] = possibleIndex;
+      game.index = possibleIndex;
+    },
+
+    //Psuedo code
+    // if(game.pickedWords.has(index)){
+    //   continue
+    // } else{
+    //   index = Math.floor(Math.random)
+    //   pickedWords.add(index)
+    // }
+
     // storeDefinitions: () => {
     //   //store all the inputs as objects in the definition array in game state
     // },

@@ -11,7 +11,7 @@ function Scores({ players, scores }) {
       //   currentPlayerInfo.currentScore = scores[info];
       playerInfoAndScore = { ...currentPlayerInfo, score: scores[info] };
       //   console.log(currentPlayerInfo);
-      console.log('playerInfoAndScore', playerInfoAndScore);
+      // console.log('playerInfoAndScore', playerInfoAndScore);
       playerArr.push(playerInfoAndScore);
     }
     setAllPlayers(playerArr);
