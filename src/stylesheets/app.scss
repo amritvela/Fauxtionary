@@ -4,6 +4,7 @@ $barbie-pink: #e0218a;
 .App {
 	display: flex;
 	flex-direction: column;
+	padding: 20px;
 }
 
 .App-header {
@@ -92,4 +93,8 @@ textarea {
 		display: flex;
 		flex-direction: column;
 	}
+}
+
+textarea {
+	padding: 10px;
 }
