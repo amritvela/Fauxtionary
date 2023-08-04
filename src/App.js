@@ -36,7 +36,7 @@ function App() {
         <div>
           <Scores players={players} scores={scores} />
           <RandomWord gameState={gameState} index={index} />
-          <DefinitionInput currentPlayerId={currentPlayerId}/>
+          <DefinitionInput currentPlayerId={currentPlayerId} definitions={definitionsObject.definitions}/>
           <ShowDefinitions definitionsObject={definitionsObject} />
         </div>
       </header>
