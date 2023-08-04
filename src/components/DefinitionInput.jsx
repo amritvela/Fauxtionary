@@ -1,3 +1,10 @@
+/*
+ * TO DO: Right now all the definitions are given to the definition input component as a prop
+ * to check if the answer is sumbitted and disable additional submissions
+ * Refactor tip : Create a Rune action that the player can call to see if they've submitted an answer
+ * This is better structure from an OOP pov because definitions should remain private to the individual player
+ */
+
 import React, { useState } from "react";
 
 const { Rune } = window;
