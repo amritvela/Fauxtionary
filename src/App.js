@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Scores from './components/Scores';
 import RandomWord from './components/RandomWord';
 import { switchDay, incrementPlayer } from './features/gameStateSlice';
-
+import DefinitionInput from './components/DefinitionInput';
 const { Rune } = window;
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
   const [players, setPlayers] = useState({});
   const [scores, setScores] = useState({});
   const [index, setIndex] = useState();
-  // console.log(window);
+  const [currentPlayerId, setCurrentPlayerId] = useState("")
   useEffect(() => {
     import('./logic').then(() =>
       Rune.initClient({
@@ -22,15 +22,12 @@ function App() {
           setPlayers({ ...runeState.players });
           setScores({ ...runeState.newGame.scores });
           setIndex(runeState.newGame.index);
+          setCurrentPlayerId(runeState.yourPlayerId)
+          console.log(runeState.newGame.definitions)
         },
       })
     );
   }, []);
-  // console.log(gameState);
-  // console.log(index);
-  // console.log(`players`, players);
-  // console.log(`rune.actions`, Rune.actions);
-
   return (
     <div className='App'>
       <header className='App-header'>
@@ -38,6 +35,7 @@ function App() {
         <div>
           <Scores players={players} scores={scores} />
           <RandomWord gameState={gameState} index={index} />
+          <DefinitionInput currentPlayerId={currentPlayerId}/>
         </div>
       </header>
     </div>
