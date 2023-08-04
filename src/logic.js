@@ -10,33 +10,34 @@ Rune.initLogic({
     }
     return {
       scores,
-      startGame: true,
+      startGame: 0,
       gameOver: false,
-      judge: undefined,
+      judgeIndex: undefined,
       pickedWords: {},
       definitions: {},
-      canShowDefinitions: false, 
-      index: undefined,
+      canShowDefinitions: false,
       word: '',
       winner: '',
     };
   },
   actions: {
-    assignRoles: (_, { game }) => {
-      const playerIds = Object.keys(playerIds)
-      console.log(playerIds);
+    assignRoles: (_, { game, allPlayerIds }) => {
+      // console.log(game);
+      // console.log(game.allPlayerIds);
+      if (game.startGame < 3) {
+        game.startGame++;
+      } else {
+        if (!game.judgeIndex) {
+          const initialIndex = Math.floor(Math.random() * 3);
+          game.judgeIndex = initialIndex;
+        }
 
-    //   if (!game.judge) {
-    //     game.judge = Math.floor(Math.random() * 3);
-    //     //assign judge to the current indexed arry
-    //   } 
-      
-      
-    //  if (game.judge === 3) {
-    //     game.judge = 0;
-    //   } else {
-    //     game.judge++;
-    //   }
+        if (game.judgeIndex > 3) {
+          game.judgeIndex = 0;
+        } else {
+          game.judgeIndex++;
+        }
+      }
     },
     // incrementScore: () => {
     //   //adds scores to the winner
@@ -57,15 +58,14 @@ Rune.initLogic({
       game.pickedWords[possibleIndex] = possibleIndex;
       game.index = possibleIndex;
     },
-    addDefinition: (playerInputAndIdObj, {game}) => {
+    addDefinition: (playerInputAndIdObj, { game }) => {
       //store all the inputs as objects in the definition array in game state
-      const {currentPlayerId, inputVal} = playerInputAndIdObj
-      game.definitions[currentPlayerId] = inputVal 
-      if(Object.keys(game.definitions).length > 3) {
-        game.canShowDefinitions = true
+      const { currentPlayerId, inputVal } = playerInputAndIdObj;
+      game.definitions[currentPlayerId] = inputVal;
+      if (Object.keys(game.definitions).length > 3) {
+        game.canShowDefinitions = true;
       }
     },
-
   },
   events: {
     /**
