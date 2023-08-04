@@ -7,6 +7,7 @@ export default function DefinitionInput({ currentPlayerId }) {
 	function handleDefinitionSubmission(e) {
 		e.preventDefault();
 		Rune.actions.addDefinition({ currentPlayerId, inputVal });
+		setInputVal("");
 	}
 	return (
 		<form className="input-and-submit" onSubmit={handleDefinitionSubmission}>
