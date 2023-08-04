@@ -3,6 +3,7 @@ import Scores from './components/Scores';
 import RandomWord from './components/RandomWord';
 import DefinitionInput from './components/DefinitionInput';
 import ShowDefinitions from './components/ShowDefinitions';
+import Instructions from './components/Instructions';
 import '../src/stylesheets/app.scss'
 const { Rune } = window;
 
@@ -33,7 +34,9 @@ function App() {
     <div className='App'>
       <header className='App-header'>
         <h1>Fauxtionary</h1>
+        
         <div>
+        <Instructions />
           <Scores players={players} scores={scores} />
           <RandomWord gameState={gameState} index={index} />
           <DefinitionInput currentPlayerId={currentPlayerId} definitions={definitionsObject.definitions}/>

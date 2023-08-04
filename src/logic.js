@@ -22,14 +22,21 @@ Rune.initLogic({
     };
   },
   actions: {
-    startGame: (_, { game }) => {
-      if (!game.judge) {
-        game.judge = Math.floor(Math.random() * 3);
-      } else if (game.judge === 3) {
-        game.judge = 0;
-      } else {
-        game.judge++;
-      }
+    assignRoles: (_, { game }) => {
+      const playerIds = Object.keys(playerIds)
+      console.log(playerIds);
+
+    //   if (!game.judge) {
+    //     game.judge = Math.floor(Math.random() * 3);
+    //     //assign judge to the current indexed arry
+    //   } 
+      
+      
+    //  if (game.judge === 3) {
+    //     game.judge = 0;
+    //   } else {
+    //     game.judge++;
+    //   }
     },
     // incrementScore: () => {
     //   //adds scores to the winner
@@ -42,8 +49,8 @@ Rune.initLogic({
     generateWord: (_, { game }) => {
       //Math.trunc(math.random) from 0-100
       let possibleIndex = Math.floor(Math.random() * 100);
-      console.log(game.pickedWords);
-      console.log(possibleIndex);
+      // console.log(game.pickedWords);
+      // console.log(possibleIndex);
       while (game.pickedWords[possibleIndex]) {
         possibleIndex = Math.floor(Math.random() * 100);
       }
@@ -59,9 +66,6 @@ Rune.initLogic({
       }
     },
 
-    // showDefinitions: () => {
-    //   //shows the definitions. WE MIGHT NOT NEED THIS.
-    // },
   },
   events: {
     /**
