@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import WordCard from './components/WordCard';
 import Scores from './components/Scores';
 import RandomWord from './components/RandomWord';
-import { switchDay, incrementPlayer } from './features/gameStateSlice';
 import DefinitionInput from './components/DefinitionInput';
+import ShowDefinitions from './components/ShowDefinitions';
 const { Rune } = window;
 
 function App() {
@@ -13,17 +11,19 @@ function App() {
   const [scores, setScores] = useState({});
   const [index, setIndex] = useState();
   const [currentPlayerId, setCurrentPlayerId] = useState("")
+  const [definitionsObject, setDefinitionsObject] = useState({})
   useEffect(() => {
     import('./logic').then(() =>
       Rune.initClient({
         onChange: (runeState) => {
           // { newGame, players, yourPlayerId, action, event }
+          console.log(runeState.newGame)
           setGameState({ ...runeState });
           setPlayers({ ...runeState.players });
           setScores({ ...runeState.newGame.scores });
           setIndex(runeState.newGame.index);
           setCurrentPlayerId(runeState.yourPlayerId)
-          console.log(runeState.newGame.definitions)
+          setDefinitionsObject({definitions: runeState.newGame.definitions, stateFlag: runeState.newGame.canShowDefinitions})
         },
       })
     );
@@ -36,6 +36,7 @@ function App() {
           <Scores players={players} scores={scores} />
           <RandomWord gameState={gameState} index={index} />
           <DefinitionInput currentPlayerId={currentPlayerId}/>
+          <ShowDefinitions definitionsObject={definitionsObject} />
         </div>
       </header>
     </div>

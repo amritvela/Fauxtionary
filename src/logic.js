@@ -15,6 +15,7 @@ Rune.initLogic({
       judge: undefined,
       pickedWords: {},
       definitions: {},
+      canShowDefinitions: false, 
       index: undefined,
       word: '',
       winner: '',
@@ -53,6 +54,9 @@ Rune.initLogic({
       //store all the inputs as objects in the definition array in game state
       const {currentPlayerId, inputVal} = playerInputAndIdObj
       game.definitions[currentPlayerId] = inputVal 
+      if(Object.keys(game.definitions).length > 3) {
+        game.canShowDefinitions = true
+      }
     },
 
     // showDefinitions: () => {
