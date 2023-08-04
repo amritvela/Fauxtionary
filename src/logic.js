@@ -14,7 +14,8 @@ Rune.initLogic({
       gameOver: false,
       judge: undefined,
       pickedWords: {},
-      definitions: [],
+      definitions: {},
+      canShowDefinitions: false, 
       index: undefined,
       word: '',
       winner: '',
@@ -49,18 +50,15 @@ Rune.initLogic({
       game.pickedWords[possibleIndex] = possibleIndex;
       game.index = possibleIndex;
     },
+    addDefinition: (playerInputAndIdObj, {game}) => {
+      //store all the inputs as objects in the definition array in game state
+      const {currentPlayerId, inputVal} = playerInputAndIdObj
+      game.definitions[currentPlayerId] = inputVal 
+      if(Object.keys(game.definitions).length > 3) {
+        game.canShowDefinitions = true
+      }
+    },
 
-    //Psuedo code
-    // if(game.pickedWords.has(index)){
-    //   continue
-    // } else{
-    //   index = Math.floor(Math.random)
-    //   pickedWords.add(index)
-    // }
-
-    // storeDefinitions: () => {
-    //   //store all the inputs as objects in the definition array in game state
-    // },
     // showDefinitions: () => {
     //   //shows the definitions. WE MIGHT NOT NEED THIS.
     // },
