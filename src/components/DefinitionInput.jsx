@@ -11,12 +11,12 @@ export default function DefinitionInput({ currentPlayerId }) {
 	}
 	return (
 		<form className="input-and-submit" onSubmit={handleDefinitionSubmission}>
-			<input
+			<textarea
 				type="text"
 				value={inputVal}
 				onChange={(e) => setInputVal(e.target.value)}
 			/>
-			<button>Submit your Faux-definition</button>
+			<button>Submit</button>
 		</form>
 	);
 }

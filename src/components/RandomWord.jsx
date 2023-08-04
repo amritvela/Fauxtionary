@@ -19,7 +19,7 @@ export default function RandomWord({ gameState, index }) {
 		} else {
 			return (
 				<div>
-					<p>{data.fake_words[index]}</p>
+					<p>{data.fake_words[index].toUpperCase()}</p>
 				</div>
 			);
 		}
@@ -27,7 +27,7 @@ export default function RandomWord({ gameState, index }) {
 
 	return (
 		<>
-			<div>{renderWord()}</div>
+			<div className="word">{renderWord()}</div>
 			{/* <button onClick={renderWord}>Start Game</button> */}
 		</>
 	);

@@ -3,6 +3,7 @@ import Scores from './components/Scores';
 import RandomWord from './components/RandomWord';
 import DefinitionInput from './components/DefinitionInput';
 import ShowDefinitions from './components/ShowDefinitions';
+import '../src/stylesheets/app.scss'
 const { Rune } = window;
 
 function App() {
