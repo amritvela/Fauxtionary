@@ -1,9 +1,10 @@
 import React from 'react';
 const { Rune } = window;
 
-function Instructions() {
+function Instructions({ currentPlayerId }) {
   function handleEnterGame() {
     Rune.actions.assignRoles();
+    Rune.actions.assignJudgeArray(currentPlayerId);
   }
 
   return (

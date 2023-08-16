@@ -9,9 +9,10 @@ Rune.initLogic({
       scores[playerId] = 0;
     }
     return {
-      scores,
       startGame: 0,
       gameOver: false,
+      judgeOrder: [],
+      currentJudge: '',
       judgeIndex: undefined,
       pickedWords: {},
       definitions: {},
@@ -24,19 +25,32 @@ Rune.initLogic({
     assignRoles: (_, { game, allPlayerIds }) => {
       // console.log(game);
       // console.log(game.allPlayerIds);
+
+      //This is the logic to make sure all players have entered and then when all players have entered then we create the randome judge index.
       if (game.startGame < 3) {
         game.startGame++;
       } else {
         if (!game.judgeIndex) {
           const initialIndex = Math.floor(Math.random() * 3);
           game.judgeIndex = initialIndex;
+
+          // game.judgeOrder = Object.values(allPlayerIds);
+          // console.log('gaame ORDER', game.judgeOrder);
         }
 
+        //assigns the next judge index during the game.
         if (game.judgeIndex > 3) {
           game.judgeIndex = 0;
         } else {
           game.judgeIndex++;
         }
+      }
+    },
+
+    assignJudgeArray: (currentPlayerID, { game, allPlayerIds }) => {
+      game.judgeOrder = [...game.judgeOrder, currentPlayerID];
+      if (game.judgeIndex) {
+        game.currentJudge = game.judgeOrder[game.judgeIndex];
       }
     },
     // incrementScore: () => {
@@ -76,3 +90,7 @@ Rune.initLogic({
     },
   },
 });
+
+/*
+
+runeState.players */
