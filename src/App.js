@@ -4,6 +4,7 @@ import RandomWord from './components/RandomWord';
 import DefinitionInput from './components/DefinitionInput';
 import ShowDefinitions from './components/ShowDefinitions';
 import Instructions from './components/Instructions';
+import JudgeView from './components/JudgeView';
 import '../src/stylesheets/app.scss';
 const { Rune } = window;
 
@@ -11,7 +12,7 @@ function App() {
   const [gameState, setGameState] = useState({});
   const [players, setPlayers] = useState({});
   const [scores, setScores] = useState({});
-  const [index, setIndex] = useState();
+  const [wordIndex, setWordIndex] = useState();
   const [currentPlayerId, setCurrentPlayerId] = useState('');
   const [definitionsObject, setDefinitionsObject] = useState({});
 
@@ -26,11 +27,11 @@ function App() {
           // console.log(runeState.newGame);
           // console.log('runeState.players', runeState.players);
           // console.log('judgeOrder', { ...runeState.newGame.judgeOrder });
-          console.log('currentJudge', runeState.newGame.currentJudge);
+          // console.log('currentJudge', runeState.newGame.currentJudge);
           setGameState({ ...runeState });
           setPlayers({ ...runeState.players });
           setScores({ ...runeState.newGame.scores });
-          setIndex(runeState.newGame.index);
+          setWordIndex(runeState.newGame.wordIndex);
           setCurrentPlayerId(runeState.yourPlayerId);
           setDefinitionsObject({
             definitions: runeState.newGame.definitions,
@@ -48,9 +49,6 @@ function App() {
     }
   }, [judgeId]);
 
-  console.log(`judge`, isJudge);
-  console.log(currentPlayerId);
-
   return (
     <div className='App'>
       <header className='App-header'>
@@ -59,11 +57,16 @@ function App() {
         <div>
           <Instructions currentPlayerId={currentPlayerId} />
           <Scores players={players} scores={scores} />
-          <RandomWord gameState={gameState} index={index} />
-          <DefinitionInput
+          {isJudge ? <JudgeView/> : 
+           <>
+            <RandomWord gameState={gameState} wordIndex={wordIndex} />
+            <DefinitionInput
             currentPlayerId={currentPlayerId}
             definitions={definitionsObject.definitions}
           />
+          </>
+          
+          }
           <ShowDefinitions definitionsObject={definitionsObject} />
         </div>
       </header>

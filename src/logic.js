@@ -62,15 +62,12 @@ Rune.initLogic({
     //   //increment the judge if its 3 then set to 0
     // },
     generateWord: (_, { game }) => {
-      //Math.trunc(math.random) from 0-100
       let possibleIndex = Math.floor(Math.random() * 100);
-      // console.log(game.pickedWords);
-      // console.log(possibleIndex);
       while (game.pickedWords[possibleIndex]) {
         possibleIndex = Math.floor(Math.random() * 100);
       }
       game.pickedWords[possibleIndex] = possibleIndex;
-      game.index = possibleIndex;
+      game.wordIndex = possibleIndex;
     },
     addDefinition: (playerInputAndIdObj, { game }) => {
       //store all the inputs as objects in the definition array in game state
