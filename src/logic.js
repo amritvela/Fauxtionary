@@ -9,26 +9,48 @@ Rune.initLogic({
       scores[playerId] = 0;
     }
     return {
-      scores,
-      startGame: true,
+      startGame: 0,
       gameOver: false,
-      judge: undefined,
+      judgeOrder: [],
+      currentJudge: '',
+      judgeIndex: undefined,
       pickedWords: {},
       definitions: {},
-      canShowDefinitions: false, 
-      index: undefined,
+      canShowDefinitions: false,
       word: '',
       winner: '',
     };
   },
   actions: {
-    startGame: (_, { game }) => {
-      if (!game.judge) {
-        game.judge = Math.floor(Math.random() * 3);
-      } else if (game.judge === 3) {
-        game.judge = 0;
+    assignRoles: (_, { game, allPlayerIds }) => {
+      // console.log(game);
+      // console.log(game.allPlayerIds);
+
+      //This is the logic to make sure all players have entered and then when all players have entered then we create the randome judge index.
+      if (game.startGame < 3) {
+        game.startGame++;
       } else {
-        game.judge++;
+        if (!game.judgeIndex) {
+          const initialIndex = Math.floor(Math.random() * 3);
+          game.judgeIndex = initialIndex;
+
+          // game.judgeOrder = Object.values(allPlayerIds);
+          // console.log('gaame ORDER', game.judgeOrder);
+        }
+
+        //assigns the next judge index during the game.
+        if (game.judgeIndex > 3) {
+          game.judgeIndex = 0;
+        } else {
+          game.judgeIndex++;
+        }
+      }
+    },
+
+    assignJudgeArray: (currentPlayerID, { game, allPlayerIds }) => {
+      game.judgeOrder = [...game.judgeOrder, currentPlayerID];
+      if (game.judgeIndex) {
+        game.currentJudge = game.judgeOrder[game.judgeIndex];
       }
     },
     // incrementScore: () => {
@@ -40,28 +62,21 @@ Rune.initLogic({
     //   //increment the judge if its 3 then set to 0
     // },
     generateWord: (_, { game }) => {
-      //Math.trunc(math.random) from 0-100
       let possibleIndex = Math.floor(Math.random() * 100);
-      console.log(game.pickedWords);
-      console.log(possibleIndex);
       while (game.pickedWords[possibleIndex]) {
         possibleIndex = Math.floor(Math.random() * 100);
       }
       game.pickedWords[possibleIndex] = possibleIndex;
-      game.index = possibleIndex;
+      game.wordIndex = possibleIndex;
     },
-    addDefinition: (playerInputAndIdObj, {game}) => {
+    addDefinition: (playerInputAndIdObj, { game }) => {
       //store all the inputs as objects in the definition array in game state
-      const {currentPlayerId, inputVal} = playerInputAndIdObj
-      game.definitions[currentPlayerId] = inputVal 
-      if(Object.keys(game.definitions).length > 3) {
-        game.canShowDefinitions = true
+      const { currentPlayerId, inputVal } = playerInputAndIdObj;
+      game.definitions[currentPlayerId] = inputVal;
+      if (Object.keys(game.definitions).length > 3) {
+        game.canShowDefinitions = true;
       }
     },
-
-    // showDefinitions: () => {
-    //   //shows the definitions. WE MIGHT NOT NEED THIS.
-    // },
   },
   events: {
     /**
@@ -72,3 +87,7 @@ Rune.initLogic({
     },
   },
 });
+
+/*
+
+runeState.players */

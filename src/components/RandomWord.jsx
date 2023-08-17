@@ -1,34 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import data from "../fakeWords.json";
-const { Rune } = window;
 
-export default function RandomWord({ gameState, index }) {
+export default function RandomWord({ gameState, wordIndex }) {
 	function renderWord() {
-		if (!index) {
+		if (wordIndex || wordIndex === 0) {
 			return (
 				<div>
-					<button
-						onClick={() => {
-							Rune.actions.generateWord();
-						}}
-					>
-						Start Game
-					</button>
+					<p>{data.fake_words[wordIndex].toUpperCase()}</p>
 				</div>
 			);
 		} else {
-			return (
-				<div>
-					<p>{data.fake_words[index].toUpperCase()}</p>
-				</div>
-			);
+			return null;
 		}
 	}
 
 	return (
 		<>
 			<div className="word">{renderWord()}</div>
-			{/* <button onClick={renderWord}>Start Game</button> */}
 		</>
 	);
 }
