@@ -36,7 +36,7 @@ const JudgeView = ({ gameState, wordIndex, roundStage, definitionsObject }) => {
 				<>
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 
-					<h2>Pick the winner!</h2>
+					<h2>Pick the winning faux-tinition!</h2>
 					<ShowDefinitions definitionsObject={definitionsObject} />
 				</>
 			);
