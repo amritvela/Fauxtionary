@@ -1,7 +1,7 @@
 import React from "react";
 import data from "../fakeWords.json";
 
-export default function RandomWord({ gameState, wordIndex }) {
+export default function RandomWord({ wordIndex }) {
 	function renderWord() {
 		if (wordIndex || wordIndex === 0) {
 			return (

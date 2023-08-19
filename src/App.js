@@ -3,9 +3,10 @@ import Scores from './components/Scores';
 import RandomWord from './components/RandomWord';
 import DefinitionInput from './components/DefinitionInput';
 import ShowDefinitions from './components/ShowDefinitions';
-import Instructions from './components/Instructions';
+import PlayerView from './components/PlayerView';
 import JudgeView from './components/JudgeView';
 import '../src/stylesheets/app.scss';
+import LandingPage from './components/LandingPage';
 const { Rune } = window;
 
 function App() {
@@ -18,16 +19,13 @@ function App() {
 
   const [judgeId, setJudgeId] = useState('');
   const [isJudge, setIsJudge] = useState(false);
+  const [roundStage, setRoundStage] = useState('acceptingPlayers')
 
   useEffect(() => {
     import('./logic').then(() =>
       Rune.initClient({
         onChange: (runeState) => {
-          // { newGame, players, yourPlayerId, action, event }
-          // console.log(runeState.newGame);
-          // console.log('runeState.players', runeState.players);
-          // console.log('judgeOrder', { ...runeState.newGame.judgeOrder });
-          // console.log('currentJudge', runeState.newGame.currentJudge);
+          setRoundStage(runeState.newGame.currentRoundStage)
           setGameState({ ...runeState });
           setPlayers({ ...runeState.players });
           setScores({ ...runeState.newGame.scores });
@@ -49,25 +47,33 @@ function App() {
     }
   }, [judgeId]);
 
+  /** 
+  * Once the roles are assigned, this function render sthe JudgeView and PlayerView
+  */
+  const RenderJudgeOrPlayerView = () => {
+    if(isJudge){
+      return <JudgeView  gameState={gameState} wordIndex={wordIndex} roundStage={roundStage} definitionsObject={definitionsObject} definitions={definitionsObject.definitions}/> 
+    } else{
+      return <PlayerView  definitionsObject={definitionsObject} gameState={gameState} currentPlayerId={currentPlayerId} definitions={definitionsObject.definitions} roundStage={roundStage} wordIndex={wordIndex}/>
+    }
+  }
+
+  /** 
+  * This function renders views based on different stages of the game 
+  */
+  const renderViews = () => {
+    if(roundStage === "acceptingPlayers") {
+      return <LandingPage currentPlayerId={currentPlayerId} />
+    } else {
+      return RenderJudgeOrPlayerView()
+    }
+  }
+
   return (
     <div className='App'>
       <header className='App-header'>
-        <h1>Fauxtionary</h1>
-
         <div>
-          <Instructions currentPlayerId={currentPlayerId} />
-          <Scores players={players} scores={scores} />
-          {isJudge ? <JudgeView/> : 
-           <>
-            <RandomWord gameState={gameState} wordIndex={wordIndex} />
-            <DefinitionInput
-            currentPlayerId={currentPlayerId}
-            definitions={definitionsObject.definitions}
-          />
-          </>
-          
-          }
-          <ShowDefinitions definitionsObject={definitionsObject} />
+          {renderViews()}
         </div>
       </header>
     </div>

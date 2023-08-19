@@ -1,4 +1,9 @@
 const { Rune } = window;
+/** 
+* declared a const to define different stages of the game 
+* which will then help us conditionally render views in different components
+*/
+const ROUND_STAGE_MAP = ["acceptingPlayers", "awaitingStart", "submitDefinition", "decisionMaking", "announcement"]
 
 Rune.initLogic({
   minPlayers: 4,
@@ -10,6 +15,7 @@ Rune.initLogic({
     }
     return {
       startGame: 0,
+      currentRoundStage: 'acceptingPlayers',
       gameOver: false,
       judgeOrder: [],
       currentJudge: '',
@@ -21,21 +27,18 @@ Rune.initLogic({
       winner: '',
     };
   },
+
+
   actions: {
     assignRoles: (_, { game, allPlayerIds }) => {
-      // console.log(game);
-      // console.log(game.allPlayerIds);
-
       //This is the logic to make sure all players have entered and then when all players have entered then we create the randome judge index.
-      if (game.startGame < 3) {
+      if (game.startGame < 4) {
         game.startGame++;
-      } else {
+      }
+       if(game.startGame === 4) {
         if (!game.judgeIndex) {
           const initialIndex = Math.floor(Math.random() * 3);
           game.judgeIndex = initialIndex;
-
-          // game.judgeOrder = Object.values(allPlayerIds);
-          // console.log('gaame ORDER', game.judgeOrder);
         }
 
         //assigns the next judge index during the game.
@@ -43,6 +46,40 @@ Rune.initLogic({
           game.judgeIndex = 0;
         } else {
           game.judgeIndex++;
+        }}
+
+    },
+    /** 
+    * Created this Rune action to update the current game stage in the game state 
+    * as per other parts of the game state 
+    */
+    determineRoundStage: (_, {game}) =>{ 
+
+      switch(game.currentRoundStage) {
+        case "acceptingPlayers":{
+          if(game.startGame === 4){
+            game.currentRoundStage = ROUND_STAGE_MAP[1]
+          }
+          break
+        }
+        case "awaitingStart":{
+          game.currentRoundStage = ROUND_STAGE_MAP[2]
+          break
+        }
+        case "submitDefinition":{
+          if(game.canShowDefinitions) game.currentRoundStage = ROUND_STAGE_MAP[3]
+          break
+        }
+        case "decisionMaking":{
+
+          break
+        }
+        case "announcement":{
+
+          break
+        }
+        default: {
+          game.currentRoundStage = ROUND_STAGE_MAP[0]
         }
       }
     },
@@ -73,7 +110,7 @@ Rune.initLogic({
       //store all the inputs as objects in the definition array in game state
       const { currentPlayerId, inputVal } = playerInputAndIdObj;
       game.definitions[currentPlayerId] = inputVal;
-      if (Object.keys(game.definitions).length > 3) {
+      if (Object.keys(game.definitions).length === 3) {
         game.canShowDefinitions = true;
       }
     },
