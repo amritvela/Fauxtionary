@@ -19,13 +19,14 @@ function App() {
 
   const [judgeId, setJudgeId] = useState('');
   const [isJudge, setIsJudge] = useState(false);
-  const [roundStage, setRoundStage] = useState('acceptingPlayers')
+  const [roundStage, setRoundStage] = useState('acceptingPlayers');
 
   useEffect(() => {
     import('./logic').then(() =>
       Rune.initClient({
         onChange: (runeState) => {
-          setRoundStage(runeState.newGame.currentRoundStage)
+          // console.log(runeState.newGame.scores);
+          setRoundStage(runeState.newGame.currentRoundStage);
           setGameState({ ...runeState });
           setPlayers({ ...runeState.players });
           setScores({ ...runeState.newGame.scores });
@@ -47,34 +48,55 @@ function App() {
     }
   }, [judgeId]);
 
-  /** 
-  * Once the roles are assigned, this function render sthe JudgeView and PlayerView
-  */
+  /**
+   * Once the roles are assigned, this function render sthe JudgeView and PlayerView
+   */
   const RenderJudgeOrPlayerView = () => {
-    if(isJudge){
-      return <JudgeView  gameState={gameState} wordIndex={wordIndex} roundStage={roundStage} definitionsObject={definitionsObject} definitions={definitionsObject.definitions}/> 
-    } else{
-      return <PlayerView  definitionsObject={definitionsObject} gameState={gameState} currentPlayerId={currentPlayerId} definitions={definitionsObject.definitions} roundStage={roundStage} wordIndex={wordIndex}/>
-    }
-  }
-
-  /** 
-  * This function renders views based on different stages of the game 
-  */
-  const renderViews = () => {
-    if(roundStage === "acceptingPlayers") {
-      return <LandingPage currentPlayerId={currentPlayerId} />
+    if (isJudge) {
+      return (
+        <div>
+          <Scores players={players} scores={scores} />
+          <JudgeView
+            gameState={gameState}
+            wordIndex={wordIndex}
+            roundStage={roundStage}
+            definitionsObject={definitionsObject}
+            definitions={definitionsObject.definitions}
+          />
+        </div>
+      );
     } else {
-      return RenderJudgeOrPlayerView()
+      return (
+        <div>
+          <Scores players={players} scores={scores} />
+          <PlayerView
+            definitionsObject={definitionsObject}
+            gameState={gameState}
+            currentPlayerId={currentPlayerId}
+            definitions={definitionsObject.definitions}
+            roundStage={roundStage}
+            wordIndex={wordIndex}
+          />
+        </div>
+      );
     }
-  }
+  };
+
+  /**
+   * This function renders views based on different stages of the game
+   */
+  const renderViews = () => {
+    if (roundStage === 'acceptingPlayers') {
+      return <LandingPage currentPlayerId={currentPlayerId} />;
+    } else {
+      return RenderJudgeOrPlayerView();
+    }
+  };
 
   return (
     <div className='App'>
       <header className='App-header'>
-        <div>
-          {renderViews()}
-        </div>
+        <div>{renderViews()}</div>
       </header>
     </div>
   );

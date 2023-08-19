@@ -1,22 +1,35 @@
-import React from "react";
+import React from 'react';
+const { Rune } = window;
 
 export default function ShowDefinitions({ definitionsObject }) {
-	const { definitions, stateFlag } = definitionsObject;
-	const renderDefinition = () => {
-		if (stateFlag === true) {
-			const definitionsToBeShown = Object.values(definitions);
-			return (
-				<>
-					<div>
-						{definitionsToBeShown.map((definition, index) => (
-							<button className="definition-button" key={`definition-${index}`}>
-								{definition}
-							</button>
-						))}
-					</div>
-				</>
-			);
-		}
-	};
-	return <div className="show-definition">{renderDefinition()}</div>;
+  const { definitions, stateFlag } = definitionsObject;
+  //   console.log(definitions);
+
+  function onclickHandler(e) {
+    // console.log(e);
+    Rune.actions.incrementScore(e);
+  }
+
+  const renderDefinition = () => {
+    if (stateFlag === true) {
+      const definitionsToBeShown = Object.keys(definitions);
+      return (
+        <>
+          <div>
+            {definitionsToBeShown.map((playerID, index) => (
+              <button
+                className='definition-button'
+                key={`definition-${index}`}
+                value={playerID}
+                onClick={(e) => onclickHandler(e.target.value)}
+              >
+                {definitions[playerID]}
+              </button>
+            ))}
+          </div>
+        </>
+      );
+    }
+  };
+  return <div className='show-definition'>{renderDefinition()}</div>;
 }

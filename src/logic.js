@@ -1,9 +1,15 @@
 const { Rune } = window;
-/** 
-* declared a const to define different stages of the game 
-* which will then help us conditionally render views in different components
-*/
-const ROUND_STAGE_MAP = ["acceptingPlayers", "awaitingStart", "submitDefinition", "decisionMaking", "announcement"]
+/**
+ * declared a const to define different stages of the game
+ * which will then help us conditionally render views in different components
+ */
+const ROUND_STAGE_MAP = [
+  'acceptingPlayers',
+  'awaitingStart',
+  'submitDefinition',
+  'decisionMaking',
+  'announcement',
+];
 
 Rune.initLogic({
   minPlayers: 4,
@@ -15,6 +21,7 @@ Rune.initLogic({
     }
     return {
       startGame: 0,
+      scores: {},
       currentRoundStage: 'acceptingPlayers',
       gameOver: false,
       judgeOrder: [],
@@ -28,14 +35,13 @@ Rune.initLogic({
     };
   },
 
-
   actions: {
     assignRoles: (_, { game, allPlayerIds }) => {
-      //This is the logic to make sure all players have entered and then when all players have entered then we create the randome judge index.
+      //This is the logic to make sure all players have entered and then when all players have entered then we create the random judge index. Once the game begins, this function will reassign increment the judget index which in turn will change judge.
       if (game.startGame < 4) {
         game.startGame++;
       }
-       if(game.startGame === 4) {
+      if (game.startGame === 4) {
         if (!game.judgeIndex) {
           const initialIndex = Math.floor(Math.random() * 3);
           game.judgeIndex = initialIndex;
@@ -46,58 +52,69 @@ Rune.initLogic({
           game.judgeIndex = 0;
         } else {
           game.judgeIndex++;
-        }}
-
-    },
-    /** 
-    * Created this Rune action to update the current game stage in the game state 
-    * as per other parts of the game state 
-    */
-    determineRoundStage: (_, {game}) =>{ 
-
-      switch(game.currentRoundStage) {
-        case "acceptingPlayers":{
-          if(game.startGame === 4){
-            game.currentRoundStage = ROUND_STAGE_MAP[1]
-          }
-          break
-        }
-        case "awaitingStart":{
-          game.currentRoundStage = ROUND_STAGE_MAP[2]
-          break
-        }
-        case "submitDefinition":{
-          if(game.canShowDefinitions) game.currentRoundStage = ROUND_STAGE_MAP[3]
-          break
-        }
-        case "decisionMaking":{
-
-          break
-        }
-        case "announcement":{
-
-          break
-        }
-        default: {
-          game.currentRoundStage = ROUND_STAGE_MAP[0]
         }
       }
     },
 
+    //This logic add the order in which the judges will be picked throughout the game.
     assignJudgeArray: (currentPlayerID, { game, allPlayerIds }) => {
       game.judgeOrder = [...game.judgeOrder, currentPlayerID];
       if (game.judgeIndex) {
         game.currentJudge = game.judgeOrder[game.judgeIndex];
       }
     },
-    // incrementScore: () => {
-    //   //adds scores to the winner
-    //   //check to see if anybody has reached 3, if so game ends
-    // },
-    // switchJudge: () => {
-    //   //if its undefined randomly pick a number from 0-3
-    //   //increment the judge if its 3 then set to 0
-    // },
+
+    //initial scores
+    assignInitialScores: (currentPlayerID, { game, allPlayerIds }) => {
+      // console.log(Object.values(allPlayerIds));
+      for (let player in allPlayerIds) {
+        if (!game.scores[allPlayerIds[player]]) {
+          game.scores[allPlayerIds[player]] = 0;
+        }
+      }
+    },
+
+    //this function will add to the players score as the game progresses.
+    incrementScore: (currentPlayerID, { game, allPlayerIds }) => {
+      game.scores[currentPlayerID]++;
+
+      //check to see if anybody has reached 3, if so game ends
+    },
+
+    /**
+     * Created this Rune action to update the current game stage in the game state
+     * as per other parts of the game state
+     */
+    determineRoundStage: (_, { game }) => {
+      switch (game.currentRoundStage) {
+        case 'acceptingPlayers': {
+          if (game.startGame === 4) {
+            game.currentRoundStage = ROUND_STAGE_MAP[1];
+          }
+          break;
+        }
+        case 'awaitingStart': {
+          game.currentRoundStage = ROUND_STAGE_MAP[2];
+          break;
+        }
+        case 'submitDefinition': {
+          if (game.canShowDefinitions)
+            game.currentRoundStage = ROUND_STAGE_MAP[3];
+          break;
+        }
+        case 'decisionMaking': {
+          break;
+        }
+        case 'announcement': {
+          break;
+        }
+        default: {
+          game.currentRoundStage = ROUND_STAGE_MAP[0];
+        }
+      }
+    },
+
+    //This function generates a random index that corresponds to our random word array. It checks to see if the index has already been generated, if not, it submits the new word, if it has then it regerates index.
     generateWord: (_, { game }) => {
       let possibleIndex = Math.floor(Math.random() * 100);
       while (game.pickedWords[possibleIndex]) {
