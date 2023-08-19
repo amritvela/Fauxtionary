@@ -7,11 +7,13 @@ export default function ShowDefinitions({ definitionsObject }) {
 			const definitionsToBeShown = Object.values(definitions);
 			return (
 				<>
-					<ul>
+					<div>
 						{definitionsToBeShown.map((definition, index) => (
-							<li key={`definition-${index}`}>{definition}</li>
+							<button className="definition-button" key={`definition-${index}`}>
+								{definition}
+							</button>
 						))}
-					</ul>
+					</div>
 				</>
 			);
 		}
