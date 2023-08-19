@@ -15,6 +15,7 @@ export default function DefinitionInput({ currentPlayerId, definitions = {} }) {
 		e.preventDefault();
 		Rune.actions.addDefinition({ currentPlayerId, inputVal });
 		setInputVal("");
+		Rune.actions.determineRoundStage();
 	}
 	const definitionSubmitted = currentPlayerId in definitions;
 	return (
@@ -26,6 +27,8 @@ export default function DefinitionInput({ currentPlayerId, definitions = {} }) {
 					className="input-and-submit"
 					onSubmit={handleDefinitionSubmission}
 				>
+					<h3>Submit your Faux-tinition</h3>
+
 					<textarea
 						type="text"
 						value={inputVal}

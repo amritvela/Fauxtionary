@@ -7,6 +7,7 @@ export default function ShowDefinitions({ definitionsObject }) {
 			const definitionsToBeShown = Object.values(definitions);
 			return (
 				<>
+					<h2>Waiting for the Judge to make a decision</h2>
 					<ul>
 						{definitionsToBeShown.map((definition, index) => (
 							<li key={`definition-${index}`}>{definition}</li>
