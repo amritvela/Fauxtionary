@@ -27,6 +27,7 @@ const PlayerView = ({
 			return (
 				<>
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
+					<h2>Waiting for the Judge to make a decision</h2>
 					<ShowDefinitions definitionsObject={definitionsObject} />
 				</>
 			);
