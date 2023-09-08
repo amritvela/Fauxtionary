@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Scores from './components/Scores';
-import RandomWord from './components/RandomWord';
-import DefinitionInput from './components/DefinitionInput';
-import ShowDefinitions from './components/ShowDefinitions';
 import PlayerView from './components/PlayerView';
 import JudgeView from './components/JudgeView';
 import '../src/stylesheets/app.scss';
+
 import LandingPage from './components/LandingPage';
 const { Rune } = window;
 
@@ -25,7 +23,6 @@ function App() {
     import('./logic').then(() =>
       Rune.initClient({
         onChange: (runeState) => {
-          // console.log(runeState.newGame.scores);
           setRoundStage(runeState.newGame.currentRoundStage);
           setGameState({ ...runeState });
           setPlayers({ ...runeState.players });
