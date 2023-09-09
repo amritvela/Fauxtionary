@@ -6,7 +6,7 @@ const Book = () => {
 	useEffect(() => {
 		const delay = setTimeout(() => {
 			setBookOpened(true);
-		}, 2500);
+		}, 300);
 	}, []);
 	return (
 		<div className={`book ${bookOpened ? `opened` : ``}`}>

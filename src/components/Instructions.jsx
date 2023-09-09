@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Book from "./Book";
 const { Rune } = window;
 
 function Instructions({ currentPlayerId }) {
+	const [bookVisible, setBookVisible] = useState(false);
+
 	function handleEnterGame() {
 		Rune.actions.assignRoles();
 		Rune.actions.assignJudgeArray(currentPlayerId);
@@ -12,10 +14,15 @@ function Instructions({ currentPlayerId }) {
 
 	return (
 		<>
-			{/* <div className="amoeba">Let's play!</div> */}
-			<div>
-				<Book />
-			</div>
+			{bookVisible ? (
+				<div>
+					<Book />
+				</div>
+			) : (
+				<div className="amoeba" onClick={() => setBookVisible(!bookVisible)}>
+					Let's play!
+				</div>
+			)}
 			<div className="bubble-top">
 				<p className="heading">Enter the Game</p>
 				<p>Click 'Enter game' to see your role</p>

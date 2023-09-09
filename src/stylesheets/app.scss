@@ -8,19 +8,19 @@
 $barbie-pink: #f098c9;
 $lavendar: #ffd6fc;
 $light-barbie-pink: #feedff;
-$pestel-green: #78e1ab;
-$pestel-turquoise: #76bdc9;
+$pastel-green: #78e1ab;
+$pastel-turquoise: #76bdc9;
 $purple: #954aff;
 $powder-blue: #e6ecff;
 $light-blue: #b6dce0;
-$mustard-pestel: #f2c368;
+$mustard-pastel: #f2c368;
 
 .title {
 	font-family: "Shrikhand", cursive;
-	color: $pestel-green;
+	color: black;
 	text-align: center;
 	letter-spacing: 2px;
-	text-shadow: 0.5px 0.5px 0 black;
+	text-shadow: 4px 4px 0 $pastel-green;
 }
 
 .container {
@@ -48,7 +48,7 @@ button {
 	width: 110px;
 	height: 40px;
 	border-radius: 10px;
-	background-color: $mustard-pestel;
+	background-color: $mustard-pastel;
 	font-weight: 900;
 	border: 1px black solid;
 	color: black;
@@ -188,7 +188,7 @@ BOOK STYLING
 
 .book-body {
 	width: 100%;
-	height: 60vh;
+	height: 65vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -199,7 +199,7 @@ BOOK STYLING
 .book {
 	transform-style: preserve-3d;
 	position: relative;
-	height: 90px;
+	height: 112px;
 	cursor: pointer;
 	backface-visibility: visible;
 }
@@ -313,41 +313,3 @@ BOOK STYLING
 .book.opened .back {
 	transform: rotateY(-20deg) scale(1.1);
 }
-// .book:hover .front {
-// 	transform: rotateY(-160deg) scale(1.1);
-// 	box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
-// }
-
-// .book:hover .page1 {
-// 	transform: rotateY(-150deg) scale(1.1);
-// 	box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
-// }
-
-// .book:hover .page2 {
-// 	transform: rotateY(-30deg) scale(1.1);
-// 	box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
-// }
-
-// .book:hover .page3 {
-// 	transform: rotateY(-140deg) scale(1.1);
-// 	box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
-// }
-
-// .book:hover .page4 {
-// 	transform: rotateY(-40deg) scale(1.1);
-// 	box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
-// }
-
-// .book:hover .page5 {
-// 	transform: rotateY(-130deg) scale(1.1);
-// 	box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
-// }
-
-// .book:hover .page6 {
-// 	transform: rotateY(-50deg) scale(1.1);
-// 	box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
-// }
-
-// .book:hover .back {
-// 	transform: rotateY(-20deg) scale(1.1);
-// }
