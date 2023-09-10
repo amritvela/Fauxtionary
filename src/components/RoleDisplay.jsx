@@ -1,10 +1,15 @@
 import React from "react";
+import { useDisableButton } from "./CustomHooks";
+
 const { Rune } = window;
 
 const RoleDisplay = ({ gameState, roundStage, isJudge }) => {
+	const { disableButton, setDisableButton } = useDisableButton();
+
 	const handleContinueScreen = () => {
 		Rune.actions.continueToNextScreen();
 		Rune.actions.determineRoundStage();
+		setDisableButton(true);
 	};
 
 	return (
@@ -21,7 +26,9 @@ const RoleDisplay = ({ gameState, roundStage, isJudge }) => {
 							<li>Submit to announce the winner!</li>
 						</ul>
 					</div>
-					<button onClick={handleContinueScreen}>Click to Continue</button>
+					<button onClick={handleContinueScreen} disabled={disableButton}>
+						Click to Continue
+					</button>
 				</>
 			) : (
 				<>
@@ -37,7 +44,9 @@ const RoleDisplay = ({ gameState, roundStage, isJudge }) => {
 							<li>Click on submit to see if you won!</li>
 						</ul>
 					</div>
-					<button onClick={handleContinueScreen}>Click to Continue</button>
+					<button onClick={handleContinueScreen} disabled={disableButton}>
+						Click to Continue
+					</button>
 				</>
 			)}
 			{/* <button onClick={() => Rune.actions.determineRoundStage()}>

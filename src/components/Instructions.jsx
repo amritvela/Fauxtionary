@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import Book from "./Book";
+import { useDisableButton } from "./CustomHooks";
+
 const { Rune } = window;
 
 function Instructions({ currentPlayerId }) {
+	const { disableButton, setDisableButton } = useDisableButton();
+
 	const [bookVisible, setBookVisible] = useState(false);
 
 	function handleEnterGame() {
@@ -10,6 +14,7 @@ function Instructions({ currentPlayerId }) {
 		Rune.actions.assignJudgeArray(currentPlayerId);
 		Rune.actions.determineRoundStage();
 		Rune.actions.assignInitialScores();
+		setDisableButton(true);
 	}
 
 	return (
@@ -27,7 +32,9 @@ function Instructions({ currentPlayerId }) {
 				<p className="heading">Let's get started!</p>
 				<p>Click 'Enter game' to see your role</p>
 			</div>
-			<button onClick={handleEnterGame}>Enter Game</button>
+			<button onClick={handleEnterGame} disabled={disableButton}>
+				Enter Game
+			</button>
 		</>
 	);
 }
