@@ -24,7 +24,7 @@ function Instructions({ currentPlayerId }) {
 				</div>
 			)}
 			<div className="bubble-top">
-				<p className="heading">Enter the Game</p>
+				<p className="heading">Let's get started!</p>
 				<p>Click 'Enter game' to see your role</p>
 			</div>
 			{/* <div className="bubble-top">
