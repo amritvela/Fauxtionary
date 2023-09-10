@@ -54,6 +54,7 @@ function App() {
         <div>
           <Scores players={players} scores={scores} />
           <JudgeView
+            isJudge={isJudge}
             gameState={gameState}
             wordIndex={wordIndex}
             roundStage={roundStage}
@@ -67,6 +68,7 @@ function App() {
         <div>
           <Scores players={players} scores={scores} />
           <PlayerView
+            isJudge={isJudge}
             definitionsObject={definitionsObject}
             gameState={gameState}
             currentPlayerId={currentPlayerId}

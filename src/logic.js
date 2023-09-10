@@ -3,8 +3,17 @@ const { Rune } = window;
  * declared a const to define different stages of the game
  * which will then help us conditionally render views in different components
  */
+// const ROUND_STAGE_MAP = [
+//   'acceptingPlayers',
+//   'awaitingStart',
+//   'submitDefinition',
+//   'decisionMaking',
+//   'announcement',
+// ];
+
 const ROUND_STAGE_MAP = [
   'acceptingPlayers',
+  'displayRole',
   'awaitingStart',
   'submitDefinition',
   'decisionMaking',
@@ -21,6 +30,7 @@ Rune.initLogic({
     }
     return {
       startGame: 0,
+      continueGame: 0,
       scores: {},
       currentRoundStage: 'acceptingPlayers',
       gameOver: false,
@@ -56,6 +66,12 @@ Rune.initLogic({
       }
     },
 
+    continueToNextScreen: (_, {game, allPlayerIds}) => {
+      if(game.continueGame < 4) {
+        game.continueGame++
+      }
+    },
+
     //This logic add the order in which the judges will be picked throughout the game.
     assignJudgeArray: (currentPlayerID, { game, allPlayerIds }) => {
       game.judgeOrder = [...game.judgeOrder, currentPlayerID];
@@ -85,7 +101,38 @@ Rune.initLogic({
      * Created this Rune action to update the current game stage in the game state
      * as per other parts of the game state
      */
-    determineRoundStage: (_, { game }) => {
+    // determineRoundStage: (_, { game }) => {
+    //   switch (game.currentRoundStage) {
+    //     case 'acceptingPlayers': {
+    //       if (game.startGame === 4) {
+    //         game.currentRoundStage = ROUND_STAGE_MAP[1];
+    //       }
+    //       break;
+    //     }
+    //     case 'awaitingStart': {
+    //       game.currentRoundStage = ROUND_STAGE_MAP[2];
+    //       break;
+    //     }
+    //     case 'submitDefinition': {
+    //       if (game.canShowDefinitions)
+    //         game.currentRoundStage = ROUND_STAGE_MAP[3];
+    //       break;
+    //     }
+    //     case 'decisionMaking': {
+    //       break;
+    //     }
+    //     case 'announcement': {
+    //       break;
+    //     }
+    //     default: {
+    //       game.currentRoundStage = ROUND_STAGE_MAP[0];
+    //     }
+    //   }
+    // },
+
+    //This function generates a random index that corresponds to our random word array. It checks to see if the index has already been generated, if not, it submits the new word, if it has then it regerates index.
+    
+     determineRoundStage: (_, { game }) => {
       switch (game.currentRoundStage) {
         case 'acceptingPlayers': {
           if (game.startGame === 4) {
@@ -93,13 +140,19 @@ Rune.initLogic({
           }
           break;
         }
+        case 'displayRole':{
+          if(game.continueGame === 4) {
+          game.currentRoundStage = ROUND_STAGE_MAP[2]
+          }
+          break
+        }
         case 'awaitingStart': {
-          game.currentRoundStage = ROUND_STAGE_MAP[2];
+            game.currentRoundStage = ROUND_STAGE_MAP[3];
           break;
         }
         case 'submitDefinition': {
           if (game.canShowDefinitions)
-            game.currentRoundStage = ROUND_STAGE_MAP[3];
+            game.currentRoundStage = ROUND_STAGE_MAP[4];
           break;
         }
         case 'decisionMaking': {
@@ -113,8 +166,7 @@ Rune.initLogic({
         }
       }
     },
-
-    //This function generates a random index that corresponds to our random word array. It checks to see if the index has already been generated, if not, it submits the new word, if it has then it regerates index.
+    
     generateWord: (_, { game }) => {
       let possibleIndex = Math.floor(Math.random() * 100);
       while (game.pickedWords[possibleIndex]) {

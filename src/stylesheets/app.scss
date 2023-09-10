@@ -140,17 +140,17 @@ textarea {
 
 .bubble-bottom {
 	margin-top: 20px;
-	--size: 280px;
+	--size: 350px;
 	border: 1px black solid;
 	position: relative;
 	width: var(--size);
-	height: calc(var(--size) * 0.55);
+	height: calc(var(--size) * 1.5);
 	background: $light-blue;
 	border-radius: 40px;
 	box-shadow: #422800 4px 4px 0 0;
 	display: flex;
 	flex-direction: column;
-	font-size: 12px;
+	font-size: 18px;
 	font-family: "Space Grotesk", sans-serif;
 	padding: 10px;
 }
