@@ -32,6 +32,7 @@ $mustard-pastel: #f2c368;
 	height: 40px;
 	border-radius: 30px;
 	padding-top: 2px;
+	margin-top: 55px;
 }
 
 .container {
@@ -61,7 +62,10 @@ $mustard-pastel: #f2c368;
 	flex-direction: column;
 	align-items: center;
 }
-
+.loading-gif {
+	width: 280px;
+	height: auto;
+}
 button {
 	width: 140px;
 	height: 50px;
@@ -112,6 +116,11 @@ textarea {
 	border: none;
 }
 
+.player-waiting-screen {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 .waiting-text {
 	font-size: 16px;
 	align-self: center;

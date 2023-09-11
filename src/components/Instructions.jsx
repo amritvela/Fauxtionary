@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Book from "./Book";
 import { useDisableButton } from "./CustomHooks";
-
 const { Rune } = window;
 
 function Instructions({ currentPlayerId }) {
@@ -34,9 +33,7 @@ function Instructions({ currentPlayerId }) {
 			</div>
 			{disableButton ? (
 				<>
-					<p className="waiting-text">
-						Waiting for all players to enter the game
-					</p>
+					<p className="waiting-text">Waiting for players to enter the game</p>
 				</>
 			) : (
 				<>

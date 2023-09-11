@@ -3,7 +3,7 @@ import RandomWord from "./RandomWord";
 import ShowDefinitions from "./ShowDefinitions";
 import RoleDisplay from "./RoleDisplay";
 import Scores from "./Scores";
-
+import { Player } from "@lottiefiles/react-lottie-player";
 const { Rune } = window;
 
 const JudgeView = ({
@@ -31,8 +31,18 @@ const JudgeView = ({
 		} else if (roundStage === "awaitingStart") {
 			if (disable === false) {
 				return (
-					<>
-						<h2>Click button to start the game!</h2>
+					<div className="container">
+						<h2 style={{ textShadow: "4px 4px 0 #78e1ab", marginTop: "110px" }}>
+							Click to start the game!
+						</h2>
+						<div>
+							<Player
+								autoplay
+								loop
+								src="https://lottie.host/f037c018-4e23-4f44-9156-0f4347bc0057/QgqfHXgqar.json"
+								style={{ height: "300px", width: "300px" }}
+							></Player>
+						</div>
 						<button
 							onClick={() => {
 								Rune.actions.generateWord();
@@ -42,7 +52,7 @@ const JudgeView = ({
 						>
 							Start Game
 						</button>
-					</>
+					</div>
 				);
 			}
 		} else if (roundStage === "submitDefinition") {

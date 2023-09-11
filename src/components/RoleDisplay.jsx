@@ -27,7 +27,7 @@ const RoleDisplay = ({ isJudge }) => {
 					</div>
 					{disableButton ? (
 						<p className="waiting-text additional-margin">
-							Waiting for all players to continue
+							Waiting for players to continue
 						</p>
 					) : (
 						<button
@@ -54,7 +54,7 @@ const RoleDisplay = ({ isJudge }) => {
 					</div>
 					{disableButton ? (
 						<p className="waiting-text additional-margin">
-							Waiting for all players to continue
+							Waiting for players to continue
 						</p>
 					) : (
 						<button
