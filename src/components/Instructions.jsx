@@ -34,7 +34,9 @@ function Instructions({ currentPlayerId }) {
 			</div>
 			{disableButton ? (
 				<>
-					<p>Waiting for all players to enter the game</p>
+					<p className="waiting-text">
+						Waiting for all players to enter the game
+					</p>
 				</>
 			) : (
 				<>
