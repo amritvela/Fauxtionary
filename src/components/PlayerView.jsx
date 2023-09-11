@@ -1,8 +1,13 @@
 import DefinitionInput from "./DefinitionInput";
 import RandomWord from "./RandomWord";
+import RoleDisplay from "./RoleDisplay";
+import Scores from "./Scores";
 import ShowDefinitions from "./ShowDefinitions";
 
 const PlayerView = ({
+	players,
+	scores,
+	isJudge,
 	gameState,
 	currentPlayerId,
 	definitions,
@@ -10,12 +15,23 @@ const PlayerView = ({
 	wordIndex,
 	definitionsObject,
 }) => {
-	const renderStageView = () => {
-		if (roundStage === "awaitingStart") {
+	const renderPlayerStageView = () => {
+		if (roundStage === "displayRole") {
+			return (
+				<>
+					<RoleDisplay
+						gameState={gameState}
+						roundStage={roundStage}
+						isJudge={isJudge}
+					/>
+				</>
+			);
+		} else if (roundStage === "awaitingStart") {
 			return <div>Waiting for Judge to Start</div>;
 		} else if (roundStage === "submitDefinition") {
 			return (
 				<>
+					<Scores players={players} scores={scores} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 					<DefinitionInput
 						currentPlayerId={currentPlayerId}
@@ -26,6 +42,7 @@ const PlayerView = ({
 		} else if (roundStage === "decisionMaking") {
 			return (
 				<>
+					<Scores players={players} scores={scores} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 					<h2>Waiting for the Judge to make a decision</h2>
 					<ShowDefinitions definitionsObject={definitionsObject} />
@@ -33,7 +50,7 @@ const PlayerView = ({
 			);
 		}
 	};
-	return <>{renderStageView()}</>;
+	return <>{renderPlayerStageView()}</>;
 };
 
 export default PlayerView;
