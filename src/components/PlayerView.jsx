@@ -1,9 +1,12 @@
 import DefinitionInput from "./DefinitionInput";
 import RandomWord from "./RandomWord";
 import RoleDisplay from "./RoleDisplay";
+import Scores from "./Scores";
 import ShowDefinitions from "./ShowDefinitions";
 
 const PlayerView = ({
+	players,
+	scores,
 	isJudge,
 	gameState,
 	currentPlayerId,
@@ -28,6 +31,7 @@ const PlayerView = ({
 		} else if (roundStage === "submitDefinition") {
 			return (
 				<>
+					<Scores players={players} scores={scores} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 					<DefinitionInput
 						currentPlayerId={currentPlayerId}
@@ -38,6 +42,7 @@ const PlayerView = ({
 		} else if (roundStage === "decisionMaking") {
 			return (
 				<>
+					<Scores players={players} scores={scores} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 					<h2>Waiting for the Judge to make a decision</h2>
 					<ShowDefinitions definitionsObject={definitionsObject} />

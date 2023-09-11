@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import RandomWord from "./RandomWord";
 import ShowDefinitions from "./ShowDefinitions";
 import RoleDisplay from "./RoleDisplay";
+import Scores from "./Scores";
 
 const { Rune } = window;
 
 const JudgeView = ({
+	players,
+	scores,
 	gameState,
 	wordIndex,
 	roundStage,
@@ -45,6 +48,7 @@ const JudgeView = ({
 		} else if (roundStage === "submitDefinition") {
 			return (
 				<>
+					<Scores players={players} scores={scores} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 					<h2>Wait for players to submit their Faux-tinition</h2>
 				</>
@@ -52,8 +56,8 @@ const JudgeView = ({
 		} else if (roundStage === "decisionMaking") {
 			return (
 				<>
+					<Scores players={players} scores={scores} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
-
 					<h2>Pick the winning faux-tinition!</h2>
 					<ShowDefinitions definitionsObject={definitionsObject} />
 				</>

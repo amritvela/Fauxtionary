@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Scores from './components/Scores';
 import PlayerView from './components/PlayerView';
 import JudgeView from './components/JudgeView';
 import '../src/stylesheets/app.scss';
@@ -43,7 +42,7 @@ function App() {
     if (judgeId !== '' && judgeId === currentPlayerId) {
       setIsJudge(true);
     }
-  }, [judgeId]);
+  }, [judgeId, currentPlayerId]);
 
   /**
    * Once the roles are assigned, this function render sthe JudgeView and PlayerView
@@ -52,8 +51,9 @@ function App() {
     if (isJudge) {
       return (
         <div>
-          {/* <Scores players={players} scores={scores} /> */}
           <JudgeView
+          players={players}
+          scores={scores}
             isJudge={isJudge}
             gameState={gameState}
             wordIndex={wordIndex}
@@ -66,8 +66,9 @@ function App() {
     } else {
       return (
         <div>
-          {/* <Scores players={players} scores={scores} /> */}
           <PlayerView
+          players={players}
+          scores={scores}
             isJudge={isJudge}
             definitionsObject={definitionsObject}
             gameState={gameState}
