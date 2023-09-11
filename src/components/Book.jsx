@@ -4,7 +4,7 @@ const Book = () => {
 	const [bookOpened, setBookOpened] = useState(false);
 
 	useEffect(() => {
-		const delay = setTimeout(() => {
+		setTimeout(() => {
 			setBookOpened(true);
 		}, 300);
 	}, []);

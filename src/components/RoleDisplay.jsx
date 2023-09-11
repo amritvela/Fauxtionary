@@ -13,34 +13,38 @@ const RoleDisplay = ({ isJudge }) => {
 	};
 
 	return (
-		<div>
+		<div className="role-view">
 			{isJudge ? (
 				<>
+					<h2 className="title white-background">How to play</h2>
 					<div className="bubble-bottom">
-						<h2 className="title">Let's play Fauxtionary!</h2>
 						<h3 className="heading">Your role is : "Judge"</h3>
-						<h4 className="heading">How to play: </h4>
-						<ul>
+						<ul className="instructions">
 							<li>Click 'start game' to display the word</li>
 							<li>Select the definition you like the most</li>
 							<li>Submit to announce the winner!</li>
 						</ul>
 					</div>
 					{disableButton ? (
-						<p>Waiting for all players to press continue</p>
+						<p className="waiting-text additional-margin">
+							Waiting for all players to continue
+						</p>
 					) : (
-						<button onClick={handleContinueScreen} disabled={disableButton}>
+						<button
+							className="additional-margin"
+							onClick={handleContinueScreen}
+							disabled={disableButton}
+						>
 							Click to Continue
 						</button>
 					)}
 				</>
 			) : (
 				<>
+					<h2 className="title white-background">How to play</h2>
 					<div className="bubble-bottom">
-						<h2 className="title">Let's play Fauxtionary!</h2>
 						<h3 className="heading">Your role is : "Player"</h3>
-						<h4 className="heading">How to play:</h4>
-						<ul>
+						<ul className="instructions">
 							<li>Come up with a fake definition for the given word</li>
 							<li>
 								Make the definition sound as humorous or absurd as possible
@@ -49,9 +53,15 @@ const RoleDisplay = ({ isJudge }) => {
 						</ul>
 					</div>
 					{disableButton ? (
-						<p>Waiting for all players to press continue</p>
+						<p className="waiting-text additional-margin">
+							Waiting for all players to continue
+						</p>
 					) : (
-						<button onClick={handleContinueScreen} disabled={disableButton}>
+						<button
+							className="additional-margin"
+							onClick={handleContinueScreen}
+							disabled={disableButton}
+						>
 							Click to Continue
 						</button>
 					)}

@@ -27,7 +27,7 @@ const PlayerView = ({
 				</>
 			);
 		} else if (roundStage === "awaitingStart") {
-			return <div>Waiting for Judge to Start</div>;
+			return <div className="waiting-text">Waiting for Judge to Start</div>;
 		} else if (roundStage === "submitDefinition") {
 			return (
 				<>
@@ -44,7 +44,8 @@ const PlayerView = ({
 				<>
 					<Scores players={players} scores={scores} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
-					<h2>Waiting for the Judge to make a decision</h2>
+					<h2 className="waiting-text">Here are all the competing answers!</h2>
+					<h2 className="waiting-text">Waiting for the Judge's decision</h2>
 					<ShowDefinitions definitionsObject={definitionsObject} />
 				</>
 			);
