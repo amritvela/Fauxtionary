@@ -52,7 +52,7 @@ function App() {
     if (isJudge) {
       return (
         <div>
-          <Scores players={players} scores={scores} />
+          {/* <Scores players={players} scores={scores} /> */}
           <JudgeView
             isJudge={isJudge}
             gameState={gameState}
@@ -66,7 +66,7 @@ function App() {
     } else {
       return (
         <div>
-          <Scores players={players} scores={scores} />
+          {/* <Scores players={players} scores={scores} /> */}
           <PlayerView
             isJudge={isJudge}
             definitionsObject={definitionsObject}

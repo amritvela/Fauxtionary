@@ -32,9 +32,17 @@ function Instructions({ currentPlayerId }) {
 				<p className="heading">Let's get started!</p>
 				<p>Click 'Enter game' to see your role</p>
 			</div>
-			<button onClick={handleEnterGame} disabled={disableButton}>
-				Enter Game
-			</button>
+			{disableButton ? (
+				<>
+					<p>Waiting for all players to enter the game</p>
+				</>
+			) : (
+				<>
+					<button onClick={handleEnterGame} disabled={disableButton}>
+						Enter Game
+					</button>
+				</>
+			)}
 		</>
 	);
 }
