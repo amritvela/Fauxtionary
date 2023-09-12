@@ -13,7 +13,7 @@ export default function ShowDefinitions({ definitionsObject }) {
 			const definitionsToBeShown = Object.keys(definitions);
 			return (
 				<>
-					<div>
+					<div className="flex-container">
 						{definitionsToBeShown.map((playerID, index) => (
 							<button
 								className="definition-button"

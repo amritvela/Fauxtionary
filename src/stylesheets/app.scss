@@ -78,25 +78,15 @@ button {
 .additional-margin {
 	margin-top: 40px;
 }
-.definition-button {
-	width: 90%;
-	height: 180px;
-	background-color: white;
-	border-radius: 0.5rem;
-	color: #e0218a;
-	box-shadow: none;
-	border: #e0218a 1px solid;
-}
 
-.definition-button:hover {
-	box-shadow: none;
-}
-button:before {
-	height: 0%;
-	width: 2px;
-}
-button:hover {
-	box-shadow: 2px 19px 31px rgba(0, 0, 0, 0.2);
+.definition-button {
+	width: 480px;
+	height: 180px;
+	background-color: $powder-blue;
+	border-radius: 0.5rem;
+	color: black;
+	box-shadow: #422800 4px 4px 0 0;
+	margin: 10px;
 }
 
 .waiting-text {
