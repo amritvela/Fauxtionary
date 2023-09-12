@@ -16,7 +16,7 @@ const RoleDisplay = ({ isJudge }) => {
 		<div className="center-container">
 			{isJudge ? (
 				<>
-					<h2 className="title white-background">How to play</h2>
+					<h2 className="smaller-title white-background">How to play</h2>
 					<div className="bubble-bottom">
 						<h3 className="heading">Your role is : "Judge"</h3>
 						<ul className="instructions">
@@ -41,7 +41,7 @@ const RoleDisplay = ({ isJudge }) => {
 				</>
 			) : (
 				<>
-					<h2 className="title white-background">How to play</h2>
+					<h2 className="smaller-title white-background">How to play</h2>
 					<div className="bubble-bottom">
 						<h3 className="heading">Your role is : "Player"</h3>
 						<ul className="instructions">
