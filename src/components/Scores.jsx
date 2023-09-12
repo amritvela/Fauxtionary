@@ -21,10 +21,11 @@ function Scores({ players, scores }) {
 			<div className="scores-container">
 				{allPlayersInfo.map((playerObj, index) => (
 					<div className="player-info" key={`${playerObj.playerId}-${index}`}>
-						{/* <img src={`${playerObj.avatarURL}`} alt="user-avatar" /> */}
-						<p>
-							{players[playerObj].displayName}: {scores[playerObj]}
-						</p>
+						<div className="player-score">
+							{/* <img src={`${playerObj.avatarURL}`} alt="user-avatar" /> */}
+							<div>{players[playerObj].displayName}</div>
+							<div>{scores[playerObj]}</div>
+						</div>
 					</div>
 				))}
 			</div>
@@ -33,7 +34,7 @@ function Scores({ players, scores }) {
 
 	return (
 		<div className="scores-component">
-			<h2>Current Scores</h2>
+			<h3>Current Scores</h3>
 			{displayInfo()}
 		</div>
 	);

@@ -11,30 +11,35 @@ const { Rune } = window;
 
 export default function DefinitionInput({ currentPlayerId, definitions = {} }) {
 	const [inputVal, setInputVal] = useState("");
+
 	function handleDefinitionSubmission(e) {
 		e.preventDefault();
 		Rune.actions.addDefinition({ currentPlayerId, inputVal });
 		setInputVal("");
 		Rune.actions.determineRoundStage();
 	}
+
 	const definitionSubmitted = currentPlayerId in definitions;
 	return (
 		<>
 			{definitionSubmitted ? (
-				<p>Faux-tinition submitted!</p>
+				<h3 className="h-styles additional-margin">Faux-tinition submitted!</h3>
 			) : (
 				<form
 					className="input-and-submit"
 					onSubmit={handleDefinitionSubmission}
 				>
-					<h3>Submit your Faux-tinition</h3>
+					<h3 className="h-styles additional-margin">
+						Submit your Faux-tinition
+					</h3>
 
 					<textarea
+						className="additional-margin"
 						type="text"
 						value={inputVal}
 						onChange={(e) => setInputVal(e.target.value)}
 					/>
-					<button>Submit</button>
+					<button className="additional-margin">Submit</button>
 				</form>
 			)}
 		</>

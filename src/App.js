@@ -50,7 +50,7 @@ function App() {
   const RenderJudgeOrPlayerView = () => {
     if (isJudge) {
       return (
-        <div>
+        <div className='container'>
           <JudgeView
           players={players}
           scores={scores}
@@ -65,7 +65,7 @@ function App() {
       );
     } else {
       return (
-        <div>
+        <div className='container'>
           <PlayerView
           players={players}
           scores={scores}
@@ -96,7 +96,7 @@ function App() {
   return (
     <div className='App'>
       <header className='App-header'>
-        <div>{renderViews()}</div>
+       {renderViews()}
       </header>
     </div>
   );

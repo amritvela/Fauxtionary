@@ -5,7 +5,7 @@ export default function RandomWord({ wordIndex }) {
 	function renderWord() {
 		if (wordIndex || wordIndex === 0) {
 			return (
-				<div>
+				<div className="word">
 					<p>{data.fake_words[wordIndex].toUpperCase()}</p>
 				</div>
 			);
@@ -14,9 +14,5 @@ export default function RandomWord({ wordIndex }) {
 		}
 	}
 
-	return (
-		<>
-			<div className="word">{renderWord()}</div>
-		</>
-	);
+	return <>{renderWord()}</>;
 }

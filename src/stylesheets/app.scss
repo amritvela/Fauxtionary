@@ -5,7 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Shrikhand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
 
-$barbie-pink: #f098c9;
+$barbie-pink: #de4a9b;
 $lavendar: #ffd6fc;
 $light-barbie-pink: #feedff;
 $pastel-green: #78e1ab;
@@ -108,14 +108,6 @@ button:hover {
 	align-items: center;
 }
 
-textarea {
-	-webkit-box-shadow: 0px 0px 51px 0px rgba(245, 46, 255, 1);
-	-moz-box-shadow: 0px 0px 51px 0px rgba(245, 46, 255, 1);
-	box-shadow: 0px 0px 5px 0px rgba(245, 46, 255, 1);
-	border-radius: 15px;
-	border: none;
-}
-
 .player-waiting-screen {
 	display: flex;
 	flex-direction: column;
@@ -127,13 +119,26 @@ textarea {
 	font-weight: 900;
 	text-shadow: 2px 2px 0 $pastel-green;
 }
+
+.h-styles {
+	text-shadow: 4px 4px 0 $pastel-green;
+	font-size: 20px;
+}
+
 .word {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	font-family: "Archivo Black", sans-serif;
-	font-size: xx-large;
+	font-size: 30px;
 	color: $barbie-pink;
+	background-color: white;
+	border: 1px black solid;
+	box-shadow: #422800 4px 4px 0 0;
+	border-radius: 30px;
+	margin-top: 50px;
+	width: 280px;
+	height: 90px;
 }
 
 .scores-component {
@@ -153,8 +158,23 @@ textarea {
 	}
 }
 
+.player-score {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
 textarea {
 	padding: 10px;
+	width: 400px;
+	height: 200px;
+	resize: none;
+	-webkit-box-shadow: 0px 0px 51px 0px rgba(245, 46, 255, 1);
+	-moz-box-shadow: 0px 0px 51px 0px rgba(245, 46, 255, 1);
+	box-shadow: 0px 0px 5px 0px rgba(245, 46, 255, 1);
+	border-radius: 15px;
+	border: none;
 }
 
 .bubble-top {

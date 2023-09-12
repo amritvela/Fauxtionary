@@ -60,7 +60,17 @@ const JudgeView = ({
 				<>
 					<Scores players={players} scores={scores} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
-					<h2>Wait for players to submit their Faux-tinition</h2>
+					<h2 className="h-styles additional-margin">
+						Wait for players to submit their Faux-tinition
+					</h2>
+					<div>
+						<Player
+							autoplay
+							loop
+							src="https://lottie.host/6547fbbd-337e-4616-9ad7-d50e238e8aae/qsT7WPY5bw.json"
+							style={{ height: "300px", width: "300px", marginTop: "80px" }}
+						></Player>
+					</div>
 				</>
 			);
 		} else if (roundStage === "decisionMaking") {
@@ -68,13 +78,13 @@ const JudgeView = ({
 				<>
 					<Scores players={players} scores={scores} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
-					<h2>Pick the winning faux-tinition!</h2>
+					<h2 className="h-styles">Pick the winning faux-tinition!</h2>
 					<ShowDefinitions definitionsObject={definitionsObject} />
 				</>
 			);
 		}
 	};
 
-	return <div>{renderJudgeStageView()}</div>;
+	return <>{renderJudgeStageView()}</>;
 };
 export default JudgeView;
