@@ -67,8 +67,9 @@ const JudgeView = ({
 						<Player
 							autoplay
 							loop
-							src="https://lottie.host/6547fbbd-337e-4616-9ad7-d50e238e8aae/qsT7WPY5bw.json"
-							style={{ height: "300px", width: "300px", marginTop: "80px" }}
+							src="https://lottie.host/db71ff58-df28-4853-b540-483cd3eb522b/Nkv4dVvnSO.json"
+							// src="https://lottie.host/6547fbbd-337e-4616-9ad7-d50e238e8aae/qsT7WPY5bw.json"
+							style={{ height: "300px", width: "300px" }}
 						></Player>
 					</div>
 				</>
