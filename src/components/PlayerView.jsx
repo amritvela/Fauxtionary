@@ -59,8 +59,7 @@ const PlayerView = ({
 				<>
 					<Scores players={players} scores={scores} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
-					<h2 className="waiting-text">Here are the competing answers!</h2>
-					<h2 className="waiting-text">Waiting for the Judge's decision</h2>
+					<h2 className="h-styles">Waiting for the Judge's decision</h2>
 					<ShowDefinitions definitionsObject={definitionsObject} />
 				</>
 			);
