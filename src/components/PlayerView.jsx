@@ -29,7 +29,7 @@ const PlayerView = ({
 			);
 		} else if (roundStage === "awaitingStart") {
 			return (
-				<div className="player-waiting-screen">
+				<div className="center-container">
 					<h2 style={{ textShadow: "4px 4px 0 #78e1ab", marginTop: "110px" }}>
 						Waiting for judge to start
 					</h2>

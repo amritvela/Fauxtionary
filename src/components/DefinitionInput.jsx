@@ -25,10 +25,7 @@ export default function DefinitionInput({ currentPlayerId, definitions = {} }) {
 			{definitionSubmitted ? (
 				<h3 className="h-styles additional-margin">Faux-tinition submitted!</h3>
 			) : (
-				<form
-					className="input-and-submit"
-					onSubmit={handleDefinitionSubmission}
-				>
+				<form className="flex-container" onSubmit={handleDefinitionSubmission}>
 					<h3 className="h-styles additional-margin">
 						Submit your Faux-tinition
 					</h3>

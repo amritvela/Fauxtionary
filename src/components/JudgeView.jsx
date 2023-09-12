@@ -31,7 +31,7 @@ const JudgeView = ({
 		} else if (roundStage === "awaitingStart") {
 			if (disable === false) {
 				return (
-					<div className="container">
+					<div className="flex-container">
 						<h2 style={{ textShadow: "4px 4px 0 #78e1ab", marginTop: "110px" }}>
 							Click to start the game!
 						</h2>
