@@ -21,7 +21,7 @@ function Scores({ players, scores }) {
 			<div className="scores-container">
 				{allPlayersInfo.map((playerObj, index) => (
 					<div className="player-info" key={`${playerObj.playerId}-${index}`}>
-						<div className="player-score">
+						<div className="flex-container">
 							{/* <img src={`${playerObj.avatarURL}`} alt="user-avatar" /> */}
 							<div>{players[playerObj].displayName}</div>
 							<div>{scores[playerObj]}</div>

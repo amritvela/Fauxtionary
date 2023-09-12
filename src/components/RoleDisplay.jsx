@@ -13,7 +13,7 @@ const RoleDisplay = ({ isJudge }) => {
 	};
 
 	return (
-		<div className="role-view">
+		<div className="center-container">
 			{isJudge ? (
 				<>
 					<h2 className="title white-background">How to play</h2>

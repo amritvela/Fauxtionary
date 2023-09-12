@@ -15,6 +15,30 @@ $powder-blue: #e6ecff;
 $light-blue: #b6dce0;
 $mustard-pastel: #f2c368;
 
+.App {
+	display: flex;
+	flex-direction: column;
+	background-color: lavender;
+	height: 1000px;
+	font-family: "Space Grotesk", sans-serif;
+	background-image: linear-gradient($purple 0.1em, transparent 0.1em),
+		linear-gradient(90deg, $purple 00.1em, transparent 00.1em);
+	background-size: 3.2em 3.2em;
+}
+
+.flex-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.center-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .title {
 	margin-top: 50px;
 	font-family: "Shrikhand", cursive;
@@ -35,33 +59,6 @@ $mustard-pastel: #f2c368;
 	margin-top: 105px;
 }
 
-.container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-.App {
-	display: flex;
-	flex-direction: column;
-	background-color: lavender;
-	height: 1000px;
-	font-family: "Space Grotesk", sans-serif;
-	background-image: linear-gradient($purple 0.1em, transparent 0.1em),
-		linear-gradient(90deg, $purple 00.1em, transparent 00.1em);
-	background-size: 3.2em 3.2em;
-}
-
-.role-view {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-.App-header {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
 .loading-gif {
 	width: 280px;
 	height: auto;
@@ -102,17 +99,6 @@ button:hover {
 	box-shadow: 2px 19px 31px rgba(0, 0, 0, 0.2);
 }
 
-.input-and-submit {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.player-waiting-screen {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
 .waiting-text {
 	font-size: 16px;
 	align-self: center;
@@ -156,13 +142,6 @@ button:hover {
 		display: flex;
 		flex-direction: column;
 	}
-}
-
-.player-score {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 }
 
 textarea {
