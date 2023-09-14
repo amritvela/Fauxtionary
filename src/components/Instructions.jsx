@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Book from "./Book";
 import { useDisableButton } from "./CustomHooks";
 const { Rune } = window;
 
 function Instructions({ currentPlayerId }) {
 	const { disableButton, setDisableButton } = useDisableButton();
-
-	const [bookVisible, setBookVisible] = useState(false);
 
 	function handleEnterGame() {
 		Rune.actions.assignRoles();
@@ -18,14 +16,12 @@ function Instructions({ currentPlayerId }) {
 
 	return (
 		<>
-			{bookVisible ? (
+			{disableButton ? (
 				<div>
 					<Book />
 				</div>
 			) : (
-				<div className="amoeba" onClick={() => setBookVisible(!bookVisible)}>
-					Let's play!
-				</div>
+				<div className="amoeba">Let's play!</div>
 			)}
 			<div className="bubble-top">
 				<p className="heading">To get started!</p>
