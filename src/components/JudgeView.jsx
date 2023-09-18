@@ -3,6 +3,8 @@ import RandomWord from "./RandomWord";
 import ShowDefinitions from "./ShowDefinitions";
 import RoleDisplay from "./RoleDisplay";
 import Scores from "./Scores";
+import DisplayRoundWinner from "./DisplayRoundWinner";
+
 import { Player } from "@lottiefiles/react-lottie-player";
 const { Rune } = window;
 
@@ -14,6 +16,7 @@ const JudgeView = ({
 	roundStage,
 	definitionsObject,
 	isJudge,
+	currentRoundWinner,
 }) => {
 	const [disable, setDisable] = useState(false);
 
@@ -79,7 +82,21 @@ const JudgeView = ({
 					<Scores players={players} scores={scores} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 					<h2 className="h-styles">Pick the winning faux-tinition!</h2>
-					<ShowDefinitions definitionsObject={definitionsObject} />
+					<ShowDefinitions
+						isJudge={isJudge}
+						definitionsObject={definitionsObject}
+					/>
+				</>
+			);
+		} else if (roundStage === "announcement") {
+			return (
+				<>
+					<Scores players={players} scores={scores} />
+					<RandomWord gameState={gameState} wordIndex={wordIndex} />
+					<DisplayRoundWinner
+						definitionsObject={definitionsObject}
+						currentRoundWinner={currentRoundWinner}
+					/>
 				</>
 			);
 		}

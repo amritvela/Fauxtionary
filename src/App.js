@@ -13,7 +13,7 @@ function App() {
   const [wordIndex, setWordIndex] = useState();
   const [currentPlayerId, setCurrentPlayerId] = useState('');
   const [definitionsObject, setDefinitionsObject] = useState({});
-
+  const [currentRoundWinner, setCurrentRoundWinner] = useState(null)
   const [judgeId, setJudgeId] = useState('');
   const [isJudge, setIsJudge] = useState(false);
   const [roundStage, setRoundStage] = useState('acceptingPlayers');
@@ -33,6 +33,7 @@ function App() {
             stateFlag: runeState.newGame.canShowDefinitions,
           });
           setJudgeId(runeState.newGame.currentJudge);
+          setCurrentRoundWinner(runeState.newGame.currentRoundWinner)
         },
       })
     );
@@ -60,6 +61,7 @@ function App() {
             roundStage={roundStage}
             definitionsObject={definitionsObject}
             definitions={definitionsObject.definitions}
+            currentRoundWinner={currentRoundWinner}
           />
         </div>
       );
@@ -76,6 +78,7 @@ function App() {
             definitions={definitionsObject.definitions}
             roundStage={roundStage}
             wordIndex={wordIndex}
+            currentRoundWinner={currentRoundWinner}
           />
         </div>
       );
