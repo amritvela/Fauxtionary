@@ -3,13 +3,7 @@ const { Rune } = window;
  * declared a const to define different stages of the game
  * which will then help us conditionally render views in different components
  */
-// const ROUND_STAGE_MAP = [
-//   'acceptingPlayers',
-//   'awaitingStart',
-//   'submitDefinition',
-//   'decisionMaking',
-//   'announcement',
-// ];
+
 
 const ROUND_STAGE_MAP = [
   'acceptingPlayers',
@@ -42,6 +36,7 @@ Rune.initLogic({
       canShowDefinitions: false,
       word: '',
       winner: '',
+      currentRoundWinner: undefined,
     };
   },
 
@@ -93,42 +88,10 @@ Rune.initLogic({
     //this function will add to the players score as the game progresses.
     incrementScore: (currentPlayerID, { game, allPlayerIds }) => {
       game.scores[currentPlayerID]++;
-
-      //check to see if anybody has reached 3, if so game ends
+      //Once the jude picks a winning answer, This line updates the currently picked winner Id in Rune state
+      game.currentRoundWinner = currentPlayerID
+      game.currentRoundStage = ROUND_STAGE_MAP[5]
     },
-
-    /**
-     * Created this Rune action to update the current game stage in the game state
-     * as per other parts of the game state
-     */
-    // determineRoundStage: (_, { game }) => {
-    //   switch (game.currentRoundStage) {
-    //     case 'acceptingPlayers': {
-    //       if (game.startGame === 4) {
-    //         game.currentRoundStage = ROUND_STAGE_MAP[1];
-    //       }
-    //       break;
-    //     }
-    //     case 'awaitingStart': {
-    //       game.currentRoundStage = ROUND_STAGE_MAP[2];
-    //       break;
-    //     }
-    //     case 'submitDefinition': {
-    //       if (game.canShowDefinitions)
-    //         game.currentRoundStage = ROUND_STAGE_MAP[3];
-    //       break;
-    //     }
-    //     case 'decisionMaking': {
-    //       break;
-    //     }
-    //     case 'announcement': {
-    //       break;
-    //     }
-    //     default: {
-    //       game.currentRoundStage = ROUND_STAGE_MAP[0];
-    //     }
-    //   }
-    // },
 
     //This function generates a random index that corresponds to our random word array. It checks to see if the index has already been generated, if not, it submits the new word, if it has then it regerates index.
     

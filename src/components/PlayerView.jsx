@@ -3,6 +3,7 @@ import RandomWord from "./RandomWord";
 import RoleDisplay from "./RoleDisplay";
 import Scores from "./Scores";
 import ShowDefinitions from "./ShowDefinitions";
+import DisplayRoundWinner from "./DisplayRoundWinner";
 import { Player } from "@lottiefiles/react-lottie-player";
 
 const PlayerView = ({
@@ -15,6 +16,7 @@ const PlayerView = ({
 	roundStage,
 	wordIndex,
 	definitionsObject,
+	currentRoundWinner,
 }) => {
 	const renderPlayerStageView = () => {
 		if (roundStage === "displayRole") {
@@ -63,6 +65,17 @@ const PlayerView = ({
 					<ShowDefinitions
 						isJudge={isJudge}
 						definitionsObject={definitionsObject}
+					/>
+				</>
+			);
+		} else if (roundStage === "announcement") {
+			return (
+				<>
+					<Scores players={players} scores={scores} />
+					<RandomWord gameState={gameState} wordIndex={wordIndex} />
+					<DisplayRoundWinner
+						definitionsObject={definitionsObject}
+						currentRoundWinner={currentRoundWinner}
 					/>
 				</>
 			);

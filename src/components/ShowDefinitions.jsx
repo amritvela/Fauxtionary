@@ -16,7 +16,7 @@ export default function ShowDefinitions({ definitionsObject, isJudge }) {
 					<div className="flex-container">
 						{definitionsToBeShown.map((playerID, index) => (
 							<button
-								className="definition-button"
+								className="judge-button"
 								key={`definition-${index}`}
 								value={playerID}
 								onClick={(e) => onclickHandler(e.target.value)}

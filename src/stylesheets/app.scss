@@ -90,6 +90,15 @@ button {
 	margin-top: 40px;
 }
 
+.confetti {
+	position: absolute;
+	z-index: 2;
+	width: 300px;
+	height: 300px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
 .definition-button {
 	width: 300px;
 	height: 100px;
@@ -100,6 +109,42 @@ button {
 	margin: 15px 0;
 	padding: 10px;
 	border: 1px black solid;
+	font-weight: 600;
+}
+.judge-button {
+	width: 300px;
+	height: 100px;
+	background-color: $powder-blue;
+	border-radius: 0.5rem;
+	color: black;
+	box-shadow: #422800 4px 4px 0 0;
+	margin: 15px 0;
+	padding: 10px;
+	border: 1px black solid;
+	font-weight: 600;
+	text-align: left;
+	font-size: 16px;
+}
+
+.judge-button:hover {
+	box-shadow: #422800 4px 4px 0 0, rgba(0, 0, 0, 0.12) 0px -12px 30px,
+		rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
+		rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.highlighted-definition {
+	width: 300px;
+	height: 100px;
+	background-color: $powder-blue;
+	border-radius: 0.5rem;
+	color: black;
+	box-shadow: $barbie-pink 2px 2px 0 0, $barbie-pink 0px 4px 6px,
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+	margin: 15px 0;
+	padding: 10px;
+	border: 1px $barbie-pink solid;
+	font-weight: 600;
+	z-index: 3;
 }
 
 .waiting-text {
@@ -149,8 +194,8 @@ button {
 
 textarea {
 	padding: 10px;
-	width: 100%;
-	height: auto;
+	width: 280px;
+	height: 100px;
 	resize: none;
 	-webkit-box-shadow: 0px 0px 51px 0px rgba(245, 46, 255, 1);
 	-moz-box-shadow: 0px 0px 51px 0px rgba(245, 46, 255, 1);
