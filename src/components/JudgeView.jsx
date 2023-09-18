@@ -32,7 +32,7 @@ const JudgeView = ({
 			if (disable === false) {
 				return (
 					<div className="flex-container">
-						<h2 style={{ textShadow: "4px 4px 0 #78e1ab", marginTop: "110px" }}>
+						<h2 style={{ textShadow: "2px 2px 0 #78e1ab", marginTop: "110px" }}>
 							Click to start the game!
 						</h2>
 						<div>

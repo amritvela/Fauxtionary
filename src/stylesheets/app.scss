@@ -40,6 +40,7 @@ $mustard-pastel: #f2c368;
 }
 
 .title {
+	font-size: 5.8vh;
 	margin-top: 50px;
 	font-family: "Shrikhand", cursive;
 	color: black;
@@ -47,6 +48,16 @@ $mustard-pastel: #f2c368;
 	letter-spacing: 2px;
 	text-shadow: 4px 4px 0 $pastel-green;
 }
+
+.smaller-title {
+	margin-top: 50px;
+	font-family: "Shrikhand", cursive;
+	color: black;
+	text-align: center;
+	letter-spacing: 2px;
+	text-shadow: 4px 4px 0 $pastel-green;
+}
+
 .white-background {
 	background-color: white;
 	border: 1px black solid;
@@ -93,11 +104,11 @@ button {
 	font-size: 16px;
 	align-self: center;
 	font-weight: 900;
-	text-shadow: 2px 2px 0 $pastel-green;
+	text-shadow: 1px 1px 0 $pastel-green;
 }
 
 .h-styles {
-	text-shadow: 4px 4px 0 $pastel-green;
+	text-shadow: 2px 2px 0 $pastel-green;
 	font-size: 20px;
 }
 
