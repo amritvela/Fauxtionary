@@ -4,7 +4,6 @@ const { Rune } = window;
  * which will then help us conditionally render views in different components
  */
 
-
 const ROUND_STAGE_MAP = [
   'acceptingPlayers',
   'displayRole',

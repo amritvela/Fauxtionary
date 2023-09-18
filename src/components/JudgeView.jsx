@@ -19,7 +19,6 @@ const JudgeView = ({
 	currentRoundWinner,
 }) => {
 	const [disable, setDisable] = useState(false);
-
 	const renderJudgeStageView = () => {
 		if (roundStage === "displayRole") {
 			return (
