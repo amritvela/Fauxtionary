@@ -1,7 +1,7 @@
 import React from "react";
 const { Rune } = window;
 
-export default function ShowDefinitions({ definitionsObject }) {
+export default function ShowDefinitions({ definitionsObject, isJudge }) {
 	const { definitions, stateFlag } = definitionsObject;
 
 	function onclickHandler(e) {
@@ -9,8 +9,8 @@ export default function ShowDefinitions({ definitionsObject }) {
 	}
 
 	const renderDefinition = () => {
-		if (stateFlag === true) {
-			const definitionsToBeShown = Object.keys(definitions);
+		const definitionsToBeShown = Object.keys(definitions);
+		if (isJudge && stateFlag === true) {
 			return (
 				<>
 					<div className="flex-container">
@@ -23,6 +23,22 @@ export default function ShowDefinitions({ definitionsObject }) {
 							>
 								{definitions[playerID]}
 							</button>
+						))}
+					</div>
+				</>
+			);
+		} else if (!isJudge && stateFlag === true) {
+			return (
+				<>
+					<div className="flex-container">
+						{definitionsToBeShown.map((playerID, index) => (
+							<div
+								className="definition-button"
+								key={`definition-${index}`}
+								value={playerID}
+							>
+								{definitions[playerID]}
+							</div>
 						))}
 					</div>
 				</>

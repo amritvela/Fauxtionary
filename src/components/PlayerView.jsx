@@ -60,7 +60,10 @@ const PlayerView = ({
 					<Scores players={players} scores={scores} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 					<h2 className="h-styles">Waiting for the Judge's decision</h2>
-					<ShowDefinitions definitionsObject={definitionsObject} />
+					<ShowDefinitions
+						isJudge={isJudge}
+						definitionsObject={definitionsObject}
+					/>
 				</>
 			);
 		}

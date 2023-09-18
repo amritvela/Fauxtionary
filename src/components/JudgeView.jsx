@@ -79,7 +79,10 @@ const JudgeView = ({
 					<Scores players={players} scores={scores} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 					<h2 className="h-styles">Pick the winning faux-tinition!</h2>
-					<ShowDefinitions definitionsObject={definitionsObject} />
+					<ShowDefinitions
+						isJudge={isJudge}
+						definitionsObject={definitionsObject}
+					/>
 				</>
 			);
 		}
