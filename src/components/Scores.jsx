@@ -15,17 +15,22 @@ function Scores({ players, scores }) {
 	//   }, [scores]);
 
 	function displayInfo() {
-		const allPlayersInfo = Object.keys(players);
-
+		const allPlayersInfo = Object.values(players);
+		console.log(allPlayersInfo);
 		return (
 			<div className="scores-container">
-				{allPlayersInfo.map((playerObj, index) => (
-					<div className="player-info" key={`${playerObj.playerId}-${index}`}>
-						<div className="flex-container">
-							{/* <img src={`${playerObj.avatarURL}`} alt="user-avatar" /> */}
-							<div>{players[playerObj].displayName}</div>
-							<div>{scores[playerObj]}</div>
-						</div>
+				{allPlayersInfo.map((playerInfoObj, index) => (
+					<div
+						className="flex-container"
+						key={`${playerInfoObj.playerId}${index}`}
+					>
+						<img
+							alt={`player-${index}-avatar`}
+							src={playerInfoObj.avatarUrl}
+							style={{ width: "70px", height: "70px" }}
+						/>
+						<div>{playerInfoObj.displayName}</div>
+						<div>{scores[playerInfoObj.playerId]}</div>
 					</div>
 				))}
 			</div>
