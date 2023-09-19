@@ -96,6 +96,7 @@ const JudgeView = ({
 						definitionsObject={definitionsObject}
 						currentRoundWinner={currentRoundWinner}
 					/>
+					<button>Click to start next round</button>
 				</>
 			);
 		}

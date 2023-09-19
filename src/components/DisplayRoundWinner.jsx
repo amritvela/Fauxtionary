@@ -7,7 +7,7 @@ const DisplayRoundWinner = ({ definitionsObject, currentRoundWinner }) => {
 	const highlightedIndex = definitionsToBeShown.indexOf(currentRoundWinner);
 
 	const renderPickedDefiniton = () => {
-		if (stateFlag === true && currentRoundWinner !== "") {
+		if (stateFlag && currentRoundWinner !== "") {
 			return (
 				<>
 					<div className="flex-container additional-margin">

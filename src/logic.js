@@ -11,6 +11,7 @@ const ROUND_STAGE_MAP = [
   'submitDefinition',
   'decisionMaking',
   'announcement',
+  'announceWinner'
 ];
 
 Rune.initLogic({
@@ -87,11 +88,14 @@ Rune.initLogic({
     //this function will add to the players score as the game progresses.
     incrementScore: (currentPlayerID, { game, allPlayerIds }) => {
       game.scores[currentPlayerID]++;
+
       //Once the jude picks a winning answer, This line updates the currently picked winner Id in Rune state
       game.currentRoundWinner = currentPlayerID
       game.currentRoundStage = ROUND_STAGE_MAP[5]
+
     },
 
+    
     //This function generates a random index that corresponds to our random word array. It checks to see if the index has already been generated, if not, it submits the new word, if it has then it regerates index.
     
      determineRoundStage: (_, { game }) => {

@@ -1,3 +1,8 @@
+/*
+	REFACTORING TIP : NO INLINE STYLING - REFACTOR TO REUSABLE CLASSES
+	GET RID OF REDUNDANT CLASSES
+*/
+
 import DefinitionInput from "./DefinitionInput";
 import RandomWord from "./RandomWord";
 import RoleDisplay from "./RoleDisplay";
