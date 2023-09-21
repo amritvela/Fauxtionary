@@ -29,6 +29,8 @@ const PlayerView = ({
 			return (
 				<>
 					<RoleDisplay
+						players={players}
+						currentPlayerId={currentPlayerId}
 						roundNum={roundNum}
 						gameState={gameState}
 						roundStage={roundStage}

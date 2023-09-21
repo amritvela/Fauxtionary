@@ -18,6 +18,7 @@ const JudgeView = ({
 	isJudge,
 	currentRoundWinner,
 	roundNum,
+	currentPlayerId,
 }) => {
 	const [disable, setDisable] = useState(false);
 	const renderJudgeStageView = () => {
@@ -29,6 +30,8 @@ const JudgeView = ({
 						gameState={gameState}
 						roundStage={roundStage}
 						isJudge={isJudge}
+						players={players}
+						currentPlayerId={currentPlayerId}
 					/>
 				</>
 			);

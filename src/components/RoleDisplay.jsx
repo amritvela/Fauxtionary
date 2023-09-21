@@ -6,9 +6,8 @@ import { useDisableButton } from "./CustomHooks";
 
 const { Rune } = window;
 
-const RoleDisplay = ({ isJudge, roundNum }) => {
+const RoleDisplay = ({ isJudge, roundNum, currentPlayerId, players }) => {
 	const { disableButton, setDisableButton } = useDisableButton();
-
 	const handleContinueScreen = () => {
 		Rune.actions.continueToNextScreen();
 		Rune.actions.determineRoundStage();
@@ -20,6 +19,13 @@ const RoleDisplay = ({ isJudge, roundNum }) => {
 			{isJudge ? (
 				<>
 					<h2 className="smaller-title white-background">How to play</h2>
+					<div className="avatar-box">
+						<img
+							alt={`player-avatar`}
+							src={players[currentPlayerId].avatarUrl}
+						/>
+						<p>{players[currentPlayerId].displayName}</p>
+					</div>
 					<div className="bubble-bottom">
 						<h3 className="heading">Your role is : "Judge"</h3>
 						<ul className="instructions">
@@ -45,6 +51,13 @@ const RoleDisplay = ({ isJudge, roundNum }) => {
 			) : (
 				<>
 					<h2 className="smaller-title white-background">How to play</h2>
+					<div className="avatar-box">
+						<img
+							alt={`player-avatar`}
+							src={players[currentPlayerId].avatarUrl}
+						/>
+						<p>{players[currentPlayerId].displayName}</p>
+					</div>
 					<div className="bubble-bottom">
 						<h3 className="heading">Your role is : "Player"</h3>
 						<ul className="instructions">

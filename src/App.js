@@ -42,7 +42,7 @@ function App() {
 
   useEffect(() => {
 
-    console.log({judgeId, currentPlayerId})
+    // console.log({judgeId, currentPlayerId})
     if (judgeId !== '' && judgeId === currentPlayerId) {
       setIsJudge(true);
     } else {
@@ -58,8 +58,8 @@ function App() {
       return (
         <div className='flex-container'>
           <JudgeView
-          players={players}
-          scores={scores}
+           players={players}
+            scores={scores}
             isJudge={isJudge}
             gameState={gameState}
             wordIndex={wordIndex}
@@ -68,6 +68,7 @@ function App() {
             definitions={definitionsObject.definitions}
             currentRoundWinner={currentRoundWinner}
             roundNum={roundNum}
+            currentPlayerId={currentPlayerId}
           />
         </div>
       );
@@ -75,8 +76,8 @@ function App() {
       return (
         <div className='flex-container'>
           <PlayerView
-          players={players}
-          scores={scores}
+            players={players}
+            scores={scores}
             isJudge={isJudge}
             definitionsObject={definitionsObject}
             gameState={gameState}
