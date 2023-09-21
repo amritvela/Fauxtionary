@@ -22,12 +22,14 @@ const PlayerView = ({
 	wordIndex,
 	definitionsObject,
 	currentRoundWinner,
+	roundNum,
 }) => {
 	const renderPlayerStageView = () => {
 		if (roundStage === "displayRole") {
 			return (
 				<>
 					<RoleDisplay
+						roundNum={roundNum}
 						gameState={gameState}
 						roundStage={roundStage}
 						isJudge={isJudge}
@@ -38,7 +40,7 @@ const PlayerView = ({
 			return (
 				<div className="center-container">
 					<h2 style={{ textShadow: "2px 2px 0 #78e1ab", marginTop: "110px" }}>
-						Waiting for judge to start
+						Waiting for judge to start round: {roundNum}
 					</h2>
 					<div>
 						<Player
@@ -53,7 +55,7 @@ const PlayerView = ({
 		} else if (roundStage === "submitDefinition") {
 			return (
 				<>
-					<Scores players={players} scores={scores} />
+					<Scores players={players} scores={scores} roundNum={roundNum} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 					<DefinitionInput
 						currentPlayerId={currentPlayerId}
@@ -64,10 +66,11 @@ const PlayerView = ({
 		} else if (roundStage === "decisionMaking") {
 			return (
 				<>
-					<Scores players={players} scores={scores} />
+					<Scores players={players} scores={scores} roundNum={roundNum} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 					<h2 className="h-styles">Waiting for the Judge's decision</h2>
 					<ShowDefinitions
+						players={players}
 						isJudge={isJudge}
 						definitionsObject={definitionsObject}
 					/>
@@ -76,7 +79,7 @@ const PlayerView = ({
 		} else if (roundStage === "announcement") {
 			return (
 				<>
-					<Scores players={players} scores={scores} />
+					<Scores players={players} scores={scores} roundNum={roundNum} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 					<DisplayRoundWinner
 						definitionsObject={definitionsObject}

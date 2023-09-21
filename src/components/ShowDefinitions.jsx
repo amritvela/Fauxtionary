@@ -4,9 +4,13 @@
 import React from "react";
 const { Rune } = window;
 
-export default function ShowDefinitions({ definitionsObject, isJudge }) {
+export default function ShowDefinitions({
+	definitionsObject,
+	isJudge,
+	players,
+}) {
 	const { definitions, stateFlag } = definitionsObject;
-
+	console.log("here are the players", players);
 	function onclickHandler(e) {
 		Rune.actions.incrementScore(e);
 	}
@@ -40,7 +44,12 @@ export default function ShowDefinitions({ definitionsObject, isJudge }) {
 								key={`definition-${index}`}
 								value={playerID}
 							>
-								{definitions[playerID]}
+								<p>
+									<span className="pink-font">
+										{players[playerID].displayName} -
+									</span>
+									<span>{definitions[playerID]}</span>
+								</p>
 							</div>
 						))}
 					</div>

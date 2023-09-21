@@ -6,7 +6,7 @@ import { useDisableButton } from "./CustomHooks";
 
 const { Rune } = window;
 
-const RoleDisplay = ({ isJudge }) => {
+const RoleDisplay = ({ isJudge, roundNum }) => {
 	const { disableButton, setDisableButton } = useDisableButton();
 
 	const handleContinueScreen = () => {
