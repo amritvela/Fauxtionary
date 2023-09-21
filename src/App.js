@@ -18,6 +18,7 @@ function App() {
   const [isJudge, setIsJudge] = useState(false);
   const [roundStage, setRoundStage] = useState('acceptingPlayers');
   const [roundNum, setRoundNum] = useState(null)
+  const [winner, setWinner] = useState('')
   useEffect(() => {
     import('./logic').then(() =>
       Rune.initClient({
@@ -35,6 +36,7 @@ function App() {
           setJudgeId(runeState.newGame.currentJudge);
           setCurrentRoundWinner(runeState.newGame.currentRoundWinner)
           setRoundNum(runeState.newGame.roundNum)
+          setWinner(runeState.newGame.winner)
         },
       })
     );
@@ -69,6 +71,7 @@ function App() {
             currentRoundWinner={currentRoundWinner}
             roundNum={roundNum}
             currentPlayerId={currentPlayerId}
+            winner={winner}
           />
         </div>
       );
@@ -87,6 +90,7 @@ function App() {
             wordIndex={wordIndex}
             currentRoundWinner={currentRoundWinner}
             roundNum={roundNum}
+            winner={winner}
           />
         </div>
       );

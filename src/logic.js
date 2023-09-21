@@ -124,7 +124,8 @@ Rune.initLogic({
         }
       }
       if(game.winner !== '') {
-        Rune.gameOver = true
+        game.gameOver = true
+        game.currentRoundStage = ROUND_STAGE_MAP[6]
       } else {
         game.currentRoundStage = ROUND_STAGE_MAP[0]
       }
@@ -159,6 +160,9 @@ Rune.initLogic({
           break;
         }
         case 'announcement': {
+          break;
+        }
+        case 'announceWinner':{
           break;
         }
         default: {

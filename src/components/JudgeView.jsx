@@ -4,6 +4,7 @@ import ShowDefinitions from "./ShowDefinitions";
 import RoleDisplay from "./RoleDisplay";
 import Scores from "./Scores";
 import DisplayRoundWinner from "./DisplayRoundWinner";
+import AnnounceWinner from "./AnnounceWinner";
 
 import { Player } from "@lottiefiles/react-lottie-player";
 const { Rune } = window;
@@ -19,6 +20,7 @@ const JudgeView = ({
 	currentRoundWinner,
 	roundNum,
 	currentPlayerId,
+	winner,
 }) => {
 	const [disable, setDisable] = useState(false);
 	const renderJudgeStageView = () => {
@@ -109,6 +111,12 @@ const JudgeView = ({
 					>
 						Click to start next round
 					</button>
+				</>
+			);
+		} else if (roundStage === "announceWinner") {
+			return (
+				<>
+					<AnnounceWinner players={players} winner={winner} />
 				</>
 			);
 		}
