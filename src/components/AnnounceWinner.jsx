@@ -5,7 +5,7 @@ const AnnounceWinner = ({ players, winner }) => {
 	return (
 		<div className="avatar-box flex-container" style={{ marginTop: "100px" }}>
 			<img alt={`player-avatar`} src={players[winner].avatarUrl} />
-			<p> CONGRATULATIONS {players[winner].displayName} !!!</p>
+			<p>{players[winner].displayName} Wins!</p>
 			<Player
 				autoplay
 				loop
