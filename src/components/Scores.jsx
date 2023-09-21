@@ -1,22 +1,8 @@
 import React from "react";
 
-function Scores({ players, scores }) {
-	//   const [allPlayers, setAllPlayers] = useState([]);
-
-	//   useEffect(() => {
-	//     let playerInfoAndScore = {};
-	//     const playerArr = [];
-	//     for (let info in scores) {
-	//       const currentPlayerInfo = players[info];
-	//       playerInfoAndScore = { ...currentPlayerInfo, score: scores[info] };
-	//       playerArr.push(playerInfoAndScore);
-	//     }
-	//     setAllPlayers(playerArr);
-	//   }, [scores]);
-
+function Scores({ players, scores, roundNum }) {
 	function displayInfo() {
 		const allPlayersInfo = Object.values(players);
-		console.log(allPlayersInfo);
 		return (
 			<div className="scores-container">
 				{allPlayersInfo.map((playerInfoObj, index) => (
@@ -24,13 +10,15 @@ function Scores({ players, scores }) {
 						className="flex-container"
 						key={`${playerInfoObj.playerId}${index}`}
 					>
-						<img
-							alt={`player-${index}-avatar`}
-							src={playerInfoObj.avatarUrl}
-							style={{ width: "70px", height: "70px" }}
-						/>
-						<div>{playerInfoObj.displayName}</div>
-						<div>{scores[playerInfoObj.playerId]}</div>
+						<div className="player-info">
+							<img
+								alt={`player-${index}-avatar`}
+								src={playerInfoObj.avatarUrl}
+								className="avatar"
+							/>
+							<div>{playerInfoObj.displayName}</div>
+							<div>{scores[playerInfoObj.playerId]}</div>
+						</div>
 					</div>
 				))}
 			</div>
@@ -39,7 +27,7 @@ function Scores({ players, scores }) {
 
 	return (
 		<div className="scores-component">
-			<h3>Current Scores</h3>
+			<h3 className="h-styles">Round # {roundNum}</h3>
 			{displayInfo()}
 		</div>
 	);

@@ -1,9 +1,12 @@
+/*
+	SCOPE FOR REFACTORING: Refactor the repeating blocks of code to be a function that can be invoked in multiple places eg: line 31 to 44 can be refactored to be a reusable function 
+*/
 import React from "react";
 import { useDisableButton } from "./CustomHooks";
 
 const { Rune } = window;
 
-const RoleDisplay = ({ isJudge }) => {
+const RoleDisplay = ({ isJudge, roundNum }) => {
 	const { disableButton, setDisableButton } = useDisableButton();
 
 	const handleContinueScreen = () => {

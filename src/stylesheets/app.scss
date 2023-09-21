@@ -20,6 +20,7 @@ $mustard-pastel: #f2c368;
 	flex-direction: column;
 	background-color: lavender;
 	height: 1000px;
+	width: 100%;
 	font-family: "Space Grotesk", sans-serif;
 	background-image: linear-gradient($purple 0.1em, transparent 0.1em),
 		linear-gradient(90deg, $purple 00.1em, transparent 00.1em);
@@ -98,6 +99,7 @@ button {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	pointer-events: none;
 }
 .definition-button {
 	width: 300px;
@@ -173,23 +175,6 @@ button {
 	margin-top: 50px;
 	width: 280px;
 	height: 90px;
-}
-
-.scores-component {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	.scores-container {
-		display: flex;
-		flex-direction: row;
-		font-size: small;
-	}
-	.scores-container .player-info {
-		font-weight: 500;
-		margin: 5px;
-		display: flex;
-		flex-direction: column;
-	}
 }
 
 textarea {
@@ -402,4 +387,47 @@ BOOK STYLING
 
 .book.opened .back {
 	transform: rotateY(-20deg) scale(1.1);
+}
+
+//SCORE COMPONENT
+.scores-component {
+	width: 100%;
+	height: auto;
+	margin: 20px;
+	padding-bottom: 25px;
+	background-color: white;
+	-webkit-box-shadow: 0px 0px 51px 0px rgba(245, 46, 255, 1);
+	-moz-box-shadow: 0px 0px 51px 0px rgba(245, 46, 255, 1);
+	box-shadow: 0px 0px 5px 0px rgba(245, 46, 255, 1);
+	border-radius: 15px;
+	color: black;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	.scores-container {
+		display: flex;
+		flex-direction: row;
+		font-size: small;
+	}
+	.scores-container .player-info {
+		font-family: "Space Grotesk", sans-serif;
+		color: rgb(50, 0, 50);
+		font-weight: 900;
+		margin: 5px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+.avatar {
+	width: 50px;
+	height: 50px;
+	margin: 10px;
+}
+
+.pink-font {
+	color: $barbie-pink;
+	margin-right: 5px;
 }

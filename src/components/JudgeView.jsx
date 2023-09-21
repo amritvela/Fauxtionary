@@ -17,6 +17,7 @@ const JudgeView = ({
 	definitionsObject,
 	isJudge,
 	currentRoundWinner,
+	roundNum,
 }) => {
 	const [disable, setDisable] = useState(false);
 	const renderJudgeStageView = () => {
@@ -24,6 +25,7 @@ const JudgeView = ({
 			return (
 				<>
 					<RoleDisplay
+						roundNum={roundNum}
 						gameState={gameState}
 						roundStage={roundStage}
 						isJudge={isJudge}
@@ -35,7 +37,7 @@ const JudgeView = ({
 				return (
 					<div className="flex-container">
 						<h2 style={{ textShadow: "2px 2px 0 #78e1ab", marginTop: "110px" }}>
-							Click to start the game!
+							Click to start round: {roundNum}
 						</h2>
 						<div>
 							<Player
@@ -60,17 +62,18 @@ const JudgeView = ({
 		} else if (roundStage === "submitDefinition") {
 			return (
 				<>
-					<Scores players={players} scores={scores} />
+					<Scores players={players} scores={scores} roundNum={roundNum} />
+
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 					<h2 className="h-styles additional-margin">
-						Wait for players to submit their Faux-tinition
+						Wait for players submission
 					</h2>
 					<div>
 						<Player
 							autoplay
 							loop
 							src="https://lottie.host/db71ff58-df28-4853-b540-483cd3eb522b/Nkv4dVvnSO.json"
-							style={{ height: "300px", width: "300px" }}
+							style={{ height: "250px", maxWidth: "250px" }}
 						></Player>
 					</div>
 				</>
@@ -78,7 +81,7 @@ const JudgeView = ({
 		} else if (roundStage === "decisionMaking") {
 			return (
 				<>
-					<Scores players={players} scores={scores} />
+					<Scores players={players} scores={scores} roundNum={roundNum} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 					<h2 className="h-styles">Pick the winning faux-tinition!</h2>
 					<ShowDefinitions
@@ -90,12 +93,19 @@ const JudgeView = ({
 		} else if (roundStage === "announcement") {
 			return (
 				<>
-					<Scores players={players} scores={scores} />
+					<Scores players={players} scores={scores} roundNum={roundNum} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
 					<DisplayRoundWinner
 						definitionsObject={definitionsObject}
 						currentRoundWinner={currentRoundWinner}
 					/>
+					<button
+						onClick={() => {
+							Rune.actions.continueToNextRound();
+						}}
+					>
+						Click to start next round
+					</button>
 				</>
 			);
 		}
