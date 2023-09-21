@@ -40,8 +40,12 @@ function App() {
   }, []);
 
   useEffect(() => {
+
+    console.log({judgeId, currentPlayerId})
     if (judgeId !== '' && judgeId === currentPlayerId) {
       setIsJudge(true);
+    } else {
+      setIsJudge(false)
     }
   }, [judgeId, currentPlayerId]);
 

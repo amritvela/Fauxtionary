@@ -16,7 +16,7 @@ function Scores({ players, scores }) {
 
 	function displayInfo() {
 		const allPlayersInfo = Object.values(players);
-		console.log(allPlayersInfo);
+		// console.log(allPlayersInfo);
 		return (
 			<div className="scores-container">
 				{allPlayersInfo.map((playerInfoObj, index) => (

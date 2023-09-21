@@ -96,7 +96,13 @@ const JudgeView = ({
 						definitionsObject={definitionsObject}
 						currentRoundWinner={currentRoundWinner}
 					/>
-					<button>Click to start next round</button>
+					<button
+						onClick={() => {
+							Rune.actions.continueToNextRound();
+						}}
+					>
+						Click to start next round
+					</button>
 				</>
 			);
 		}

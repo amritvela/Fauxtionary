@@ -24,19 +24,20 @@ Rune.initLogic({
     }
     return {
       startGame: 0,
-      continueGame: 0,
+      continueGame: 0, //
       scores: {},
       currentRoundStage: 'acceptingPlayers',
       gameOver: false,
-      judgeOrder: [],
-      currentJudge: '',
-      judgeIndex: undefined,
+      judgeOrder: [], //Judge order prevents the same person from being the judge again - We follow this judge order with the rounds - And Reset this judge order once the game is over - I think Rune does the resetting of the state for us 
+      currentJudge: '', // This the string that represents the currentPlayerId of the Judge
+      judgeIndex: null, //Is a randomly assigned index between 0 and 3 
       pickedWords: {},
       definitions: {},
       canShowDefinitions: false,
       word: '',
       winner: '',
       currentRoundWinner: undefined,
+      roundNum: 1
     };
   },
 
@@ -47,18 +48,22 @@ Rune.initLogic({
         game.startGame++;
       }
       if (game.startGame === 4) {
-        if (!game.judgeIndex) {
+        // if (!game.judgeIndex && game.judgeIndex !== 0) {
+        if (game.judgeIndex === null) {
           const initialIndex = Math.floor(Math.random() * 3);
           game.judgeIndex = initialIndex;
         }
 
         //assigns the next judge index during the game.
-        if (game.judgeIndex > 3) {
+        // else if (game.judgeIndex > 3) {
+        else if (game.judgeIndex === 3) {
           game.judgeIndex = 0;
         } else {
           game.judgeIndex++;
         }
       }
+      console.log('judgeIndex in assignRoles', game.judgeIndex)
+
     },
 
     continueToNextScreen: (_, {game, allPlayerIds}) => {
@@ -67,10 +72,19 @@ Rune.initLogic({
       }
     },
 
-    //This logic add the order in which the judges will be picked throughout the game.
+    //This logic adds the order in which the judges will be picked throughout the game.
     assignJudgeArray: (currentPlayerID, { game, allPlayerIds }) => {
-      game.judgeOrder = [...game.judgeOrder, currentPlayerID];
-      if (game.judgeIndex) {
+      /**
+       * We only want to set up the initial judge order array
+       * in round 1 when players haven't been added to it yet.
+       * After the initial judge order array is setup, we do not need
+       * to modify it again.
+       */
+      if (game.roundNum === 1) {
+        game.judgeOrder = [...game.judgeOrder, currentPlayerID];
+      }
+      console.log('judgeIndex in assignJudgeArray', game.judgeIndex)
+      if (game.judgeIndex !== null) {
         game.currentJudge = game.judgeOrder[game.judgeIndex];
       }
     },
@@ -95,6 +109,26 @@ Rune.initLogic({
 
     },
 
+    continueToNextRound: (_,{game}) => {
+      const {scores } = game
+      console.log(scores)
+      game.roundNum = game.roundNum + 1
+      game.startGame = 0
+      game.continueGame = 0
+      game.definitions = {}
+      game.canShowDefinitions = false
+      
+      for(let player in scores) {
+        if(scores[player] >= 3) {
+          game.winner = player
+        }
+      }
+      if(game.winner !== '') {
+        Rune.gameOver = true
+      } else {
+        game.currentRoundStage = ROUND_STAGE_MAP[0]
+      }
+    },
     
     //This function generates a random index that corresponds to our random word array. It checks to see if the index has already been generated, if not, it submits the new word, if it has then it regerates index.
     
