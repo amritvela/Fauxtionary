@@ -1,6 +1,6 @@
 # Fauxtionary
 
-![Fauxtionary Logo](https://www.canva.com/design/DAFvTWVFUi4/R7gVeWXd25TFEGonSXXQ2A/view?utm_content=DAFvTWVFUi4&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
+![Fauxtionary Logo](https://static.wixstatic.com/media/c6bc62_17d4a33ec24149d2bacded0583150a08~mv2.png)
 
 **Fauxtionary** is a fun and creative 4 player game where players have to create fake definitions for fake words. This repository contains all the resources and code for the game. You can play the live version on RuneSDK.
 
