@@ -1,61 +1,116 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import PlayerCard from './components/PlayerCard';
-import {
-  switchDay,
-  clearPlayers,
-  incrementPlayer,
-  switchGameOverFalse,
-} from './features/gameStateSlice';
+import React, { useEffect, useState } from 'react';
+import PlayerView from './components/PlayerView';
+import JudgeView from './components/JudgeView';
+import '../src/stylesheets/app.scss';
+
+import LandingPage from './components/LandingPage';
+const { Rune } = window;
 
 function App() {
-  
-  const playersArr = useSelector((state) => state.gameState.currentPlayers);
-  const dispatch = useDispatch() 
+  const [gameState, setGameState] = useState({});
+  const [players, setPlayers] = useState({});
+  const [scores, setScores] = useState({});
+  const [wordIndex, setWordIndex] = useState();
+  const [currentPlayerId, setCurrentPlayerId] = useState('');
+  const [definitionsObject, setDefinitionsObject] = useState({});
+  const [currentRoundWinner, setCurrentRoundWinner] = useState(null)
+  const [judgeId, setJudgeId] = useState('');
+  const [isJudge, setIsJudge] = useState(false);
+  const [roundStage, setRoundStage] = useState('acceptingPlayers');
+  const [roundNum, setRoundNum] = useState(null)
+  const [winner, setWinner] = useState('')
 
-  const useGameMode = () => {
-    dispatch(switchDay());
-}
+  useEffect(() => {
+    import('./logic').then(() =>
+      Rune.initClient({
+        onChange: (runeState) => {
+          setRoundStage(runeState.newGame.currentRoundStage);
+          setGameState({ ...runeState });
+          setPlayers({ ...runeState.players });
+          setScores({ ...runeState.newGame.scores });
+          setWordIndex(runeState.newGame.wordIndex);
+          setCurrentPlayerId(runeState.yourPlayerId);
+          setDefinitionsObject({
+            definitions: runeState.newGame.definitions,
+            stateFlag: runeState.newGame.canShowDefinitions,
+          });
+          setJudgeId(runeState.newGame.currentJudge);
+          setCurrentRoundWinner(runeState.newGame.currentRoundWinner)
+          setRoundNum(runeState.newGame.roundNum)
+          setWinner(runeState.newGame.winner)
+        },
+      })
+    );
+  }, []);
 
-  function HandleInitializePlayers() {
-      dispatch(clearPlayers());
-      dispatch(switchGameOverFalse());
-      // generate all the players
-      // const doctor = 3;
-      // const scientist = 4;
-      // const busyBody = 0;
-      for (let i = 0; i < 7; i++) {
-        let role = 'normal';
-        if (i === 3) {
-          role = 'doctor';
-        } else if (i === 4) {
-          role = 'scientist';
-        } else if (i === 0) {
-          role = 'busyBody';
-        }
-  
-        dispatch(
-          incrementPlayer({
-            playerId: i,
-            active: true,
-            role: role,
-          })
-        );
-      }
-      
+  useEffect(() => {
+    if (judgeId !== '' && judgeId === currentPlayerId) {
+      setIsJudge(true);
+    } else {
+      setIsJudge(false)
     }
+  }, [judgeId, currentPlayerId]);
+
+  /**
+   * Once the roles are assigned, this function render sthe JudgeView and PlayerView
+   */
+  const RenderJudgeOrPlayerView = () => {
+    if (isJudge) {
+      return (
+        <div className='flex-container'>
+          <JudgeView
+           players={players}
+            scores={scores}
+            isJudge={isJudge}
+            gameState={gameState}
+            wordIndex={wordIndex}
+            roundStage={roundStage}
+            definitionsObject={definitionsObject}
+            definitions={definitionsObject.definitions}
+            currentRoundWinner={currentRoundWinner}
+            roundNum={roundNum}
+            currentPlayerId={currentPlayerId}
+            winner={winner}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className='flex-container'>
+          <PlayerView
+            players={players}
+            scores={scores}
+            isJudge={isJudge}
+            definitionsObject={definitionsObject}
+            gameState={gameState}
+            currentPlayerId={currentPlayerId}
+            definitions={definitionsObject.definitions}
+            roundStage={roundStage}
+            wordIndex={wordIndex}
+            currentRoundWinner={currentRoundWinner}
+            roundNum={roundNum}
+            winner={winner}
+          />
+        </div>
+      );
+    }
+  };
+
+  /**
+   * This function renders views based on different stages of the game
+   */
+  const renderViews = () => {
+    if (roundStage === 'acceptingPlayers') {
+      return <LandingPage currentPlayerId={currentPlayerId} currentRoundWinner={currentRoundWinner}/>;
+    } else {
+      return RenderJudgeOrPlayerView();
+    }
+  };
 
   return (
     <div className='App'>
-      <header className='App-header'>
-        <h1>Zombi Party</h1>
-        <button onClick={HandleInitializePlayers}>Enter Party</button>
-        <button onClick={useGameMode}>Switch Day</button>
-        <div>
-          {playersArr.map((player, index) => (
-            <PlayerCard playerId={player.playerId} role={player.role} key={player.playerId}/>
-          ))}
-        </div>
+      <header className='center-container'>
+       {renderViews()}
       </header>
     </div>
   );
