@@ -1,7 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Ultra&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@1&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Shrikhand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
 
@@ -96,16 +93,10 @@ button:hover {
 	margin-top: 20px;
 }
 
-.confetti {
-	position: absolute;
-	z-index: 2;
-	width: 300px;
-	height: 300px;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	pointer-events: none;
+.additional-margin-100 {
+	margin-top: 100px;
 }
+
 .definition-button {
 	width: 85vw;
 	min-height: 100px;
@@ -169,6 +160,11 @@ button:hover {
 	text-shadow: 2px 2px 0 $pastel-green;
 	font-size: 18px;
 	margin: 15px 0;
+}
+
+.heading-styles {
+	text-shadow: 2px 2px 0 $pastel-green;
+	margin-top: 110px;
 }
 .error-message {
 	text-shadow: 1px 1px 0 $pastel-green;
@@ -271,7 +267,7 @@ textarea {
 }
 
 /*
-BOOK STYLING
+==================BOOK STYLING==========================
 */
 
 .book-body {
@@ -402,7 +398,10 @@ BOOK STYLING
 	transform: rotateY(-20deg) scale(1.1);
 }
 
-//SCORE COMPONENT
+/*
+* ===============SCORE COMPONENT===================
+*/
+
 .scores-title {
 	text-shadow: 1px 1px 0 $pastel-green;
 	font-size: 16px;
@@ -467,11 +466,11 @@ BOOK STYLING
 .winner-text {
 	font-size: 25px;
 }
-
-.badge {
-	width: 300px;
-	height: 300px;
+.winner-avatar-image {
+	width: 100px;
+	height: 100px;
 }
+
 .avatar-box {
 	display: flex;
 	flex-direction: column;
@@ -491,4 +490,36 @@ BOOK STYLING
 		-moz-box-shadow: 0px 0px 51px 0px rgba(245, 46, 255, 1);
 		box-shadow: 0px 0px 5px 0px rgba(245, 46, 255, 1);
 	}
+}
+
+/*================= Animation Player Styling================*/
+
+.book-animation {
+	height: 300px;
+	width: 300px;
+}
+.loading-animation {
+	height: 200px;
+	max-width: 200px;
+}
+.pegions-handshake-animation {
+	margin: 20px;
+	width: 80vw;
+	height: 80vw;
+}
+
+.confetti {
+	position: absolute;
+	z-index: 2;
+	width: 300px;
+	height: 300px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+}
+
+.badge {
+	width: 300px;
+	height: 300px;
 }
