@@ -70,9 +70,7 @@ const JudgeView = ({
 					<Scores players={players} scores={scores} roundNum={roundNum} />
 
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
-					<h2 className="h-styles additional-margin">
-						Wait for players submission
-					</h2>
+					<h2 className="h-styles">Wait for players submission</h2>
 					<div>
 						<Player
 							autoplay
