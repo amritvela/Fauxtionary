@@ -31,7 +31,6 @@ export default function DefinitionInput({ currentPlayerId, definitions = {} }) {
 					</h3>
 
 					<textarea
-						className="additional-margin"
 						type="text"
 						value={inputVal}
 						onChange={(e) => setInputVal(e.target.value)}

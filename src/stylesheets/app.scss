@@ -19,7 +19,8 @@ $mustard-pastel: #f2c368;
 	display: flex;
 	flex-direction: column;
 	background-color: lavender;
-	height: 1000px;
+	min-height: 100vh;
+	height: 100%;
 	width: 100%;
 	font-family: "Space Grotesk", sans-serif;
 	background-image: linear-gradient($purple 0.1em, transparent 0.1em),
@@ -64,15 +65,15 @@ $mustard-pastel: #f2c368;
 	border: 1px black solid;
 	color: black;
 	box-shadow: #422800 4px 4px 0 0;
-	width: 250px;
+	width: 80%;
 	height: 40px;
 	border-radius: 30px;
 	padding-top: 2px;
-	margin-top: 105px;
+	margin-top: 40px;
 }
 
 .loading-gif {
-	width: 280px;
+	width: 80%;
 	height: auto;
 }
 button {
@@ -86,9 +87,13 @@ button {
 	box-shadow: #422800 4px 4px 0 0;
 	font-family: "Space Grotesk", sans-serif;
 }
-
+button:hover {
+	box-shadow: #422800 4px 4px 0 0, rgba(0, 0, 0, 0.12) 0px -12px 30px,
+		rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
+		rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
 .additional-margin {
-	margin-top: 40px;
+	margin-top: 20px;
 }
 
 .confetti {
@@ -172,7 +177,7 @@ button {
 	border: 1px black solid;
 	box-shadow: #422800 4px 4px 0 0;
 	border-radius: 30px;
-	margin-top: 50px;
+	// margin-top: 50px;
 	width: 280px;
 	height: 90px;
 }
@@ -211,7 +216,6 @@ textarea {
 }
 
 .bubble-bottom {
-	margin-top: 20px;
 	--size: 280px;
 	border: 1px black solid;
 	position: relative;
@@ -392,9 +396,8 @@ BOOK STYLING
 //SCORE COMPONENT
 .scores-component {
 	width: 100%;
-	height: auto;
+	height: 30vh;
 	margin: 20px;
-	padding-bottom: 25px;
 	background-color: white;
 	-webkit-box-shadow: 0px 0px 51px 0px rgba(245, 46, 255, 1);
 	-moz-box-shadow: 0px 0px 51px 0px rgba(245, 46, 255, 1);
@@ -424,7 +427,6 @@ BOOK STYLING
 .avatar {
 	width: 50px;
 	height: 50px;
-	margin: 10px;
 }
 
 .pink-font {
@@ -438,8 +440,8 @@ BOOK STYLING
 	align-items: center;
 	justify-content: center;
 	img {
-		width: 100px;
-		height: 100px;
+		width: 80px;
+		height: 80px;
 	}
 	p {
 		font-weight: 900;

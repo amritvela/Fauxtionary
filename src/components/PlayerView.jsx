@@ -44,8 +44,9 @@ const PlayerView = ({
 			return (
 				<div className="center-container">
 					<h2 style={{ textShadow: "2px 2px 0 #78e1ab", marginTop: "110px" }}>
-						Waiting for judge to start round: {roundNum}
+						Waiting to start round: {roundNum}
 					</h2>
+
 					<div>
 						<Player
 							autoplay
