@@ -24,7 +24,8 @@ Rune.initLogic({
     }
     return {
       startGame: 0,
-      continueGame: 0, //
+      continueGame: 0, 
+
       scores: {},
       currentRoundStage: 'acceptingPlayers',
       gameOver: false,
@@ -62,7 +63,7 @@ Rune.initLogic({
           game.judgeIndex++;
         }
       }
-      console.log('judgeIndex in assignRoles', game.judgeIndex)
+      // console.log('judgeIndex in assignRoles', game.judgeIndex)
 
     },
 
@@ -83,7 +84,7 @@ Rune.initLogic({
       if (game.roundNum === 1) {
         game.judgeOrder = [...game.judgeOrder, currentPlayerID];
       }
-      console.log('judgeIndex in assignJudgeArray', game.judgeIndex)
+      // console.log('judgeIndex in assignJudgeArray', game.judgeIndex)
       if (game.judgeIndex !== null) {
         game.currentJudge = game.judgeOrder[game.judgeIndex];
       }
@@ -111,7 +112,6 @@ Rune.initLogic({
 
     continueToNextRound: (_,{game}) => {
       const {scores } = game
-      console.log(scores)
       game.roundNum = game.roundNum + 1
       game.startGame = 0
       game.continueGame = 0

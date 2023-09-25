@@ -142,7 +142,8 @@ button:hover {
 }
 
 .highlighted-definition {
-	width: 300px;
+	width: 85vw;
+	min-height: 100px;
 	min-height: 100px;
 	height: 100%;
 	background-color: $powder-blue;
@@ -150,7 +151,7 @@ button:hover {
 	color: black;
 	box-shadow: $barbie-pink 2px 2px 0 0, $barbie-pink 0px 4px 6px,
 		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-	margin: 15px 0;
+	margin: 0 0 15px 0;
 	padding: 10px;
 	border: 1px $barbie-pink solid;
 	font-weight: 600;
@@ -180,15 +181,14 @@ button:hover {
 	flex-direction: column;
 	align-items: center;
 	font-family: "Archivo Black", sans-serif;
-	font-size: 30px;
+	font-size: 24px;
 	color: $barbie-pink;
 	background-color: white;
 	border: 1px black solid;
-	box-shadow: #422800 4px 4px 0 0;
+	box-shadow: #422800 3px 3px 0 0;
 	border-radius: 30px;
-	// margin-top: 50px;
-	width: 280px;
-	height: 90px;
+	width: 50vw;
+	height: 70px;
 }
 
 textarea {
@@ -459,7 +459,19 @@ BOOK STYLING
 	color: $barbie-pink;
 	margin-right: 5px;
 }
+.winner-heading {
+	text-shadow: 2px 2px 0 $pastel-green;
+	margin: 15px 0;
+	font-size: 30px;
+}
+.winner-text {
+	font-size: 25px;
+}
 
+.badge {
+	width: 300px;
+	height: 300px;
+}
 .avatar-box {
 	display: flex;
 	flex-direction: column;
