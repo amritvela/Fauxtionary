@@ -19,6 +19,8 @@ function App() {
   const [roundStage, setRoundStage] = useState('acceptingPlayers');
   const [roundNum, setRoundNum] = useState(null)
   const [winner, setWinner] = useState('')
+
+  console.log('GAME STATEEEE', gameState)
   useEffect(() => {
     import('./logic').then(() =>
       Rune.initClient({
@@ -102,7 +104,7 @@ function App() {
    */
   const renderViews = () => {
     if (roundStage === 'acceptingPlayers') {
-      return <LandingPage currentPlayerId={currentPlayerId} />;
+      return <LandingPage currentPlayerId={currentPlayerId} currentRoundWinner={currentRoundWinner}/>;
     } else {
       return RenderJudgeOrPlayerView();
     }
