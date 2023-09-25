@@ -23,100 +23,111 @@ const JudgeView = ({
 	winner,
 }) => {
 	const [disable, setDisable] = useState(false);
+
 	const renderJudgeStageView = () => {
-		if (roundStage === "displayRole") {
-			return (
-				<>
-					<RoleDisplay
-						roundNum={roundNum}
-						gameState={gameState}
-						roundStage={roundStage}
-						isJudge={isJudge}
-						players={players}
-						currentPlayerId={currentPlayerId}
-					/>
-				</>
-			);
-		} else if (roundStage === "awaitingStart") {
-			if (disable === false) {
+		switch (roundStage) {
+			case "displayRole":
 				return (
-					<div className="flex-container">
-						<h2 className="heading-styles">Click to start round: {roundNum}</h2>
+					<>
+						<RoleDisplay
+							roundNum={roundNum}
+							gameState={gameState}
+							roundStage={roundStage}
+							isJudge={isJudge}
+							players={players}
+							currentPlayerId={currentPlayerId}
+						/>
+					</>
+				);
+
+			case "awaitingStart":
+				if (!disable) {
+					return (
+						<div className="flex-container">
+							<h2 className="heading-styles">
+								Click to start round: {roundNum}
+							</h2>
+							<div>
+								<Player
+									autoplay
+									loop
+									src="https://lottie.host/f037c018-4e23-4f44-9156-0f4347bc0057/QgqfHXgqar.json"
+									className="book-animation"
+								></Player>
+							</div>
+							<button
+								onClick={() => {
+									Rune.actions.generateWord();
+									Rune.actions.determineRoundStage();
+									setDisable(true);
+								}}
+							>
+								Start Game
+							</button>
+						</div>
+					);
+				}
+				break;
+
+			case "submitDefinition":
+				return (
+					<>
+						<Scores players={players} scores={scores} roundNum={roundNum} />
+						<RandomWord gameState={gameState} wordIndex={wordIndex} />
+						<h2 className="h-styles">Waiting for submissions</h2>
 						<div>
 							<Player
 								autoplay
 								loop
-								src="https://lottie.host/f037c018-4e23-4f44-9156-0f4347bc0057/QgqfHXgqar.json"
-								className="book-animation"
+								src="https://lottie.host/db71ff58-df28-4853-b540-483cd3eb522b/Nkv4dVvnSO.json"
+								className="loading-animation"
 							></Player>
 						</div>
+					</>
+				);
+
+			case "decisionMaking":
+				return (
+					<>
+						<Scores players={players} scores={scores} roundNum={roundNum} />
+						<RandomWord gameState={gameState} wordIndex={wordIndex} />
+						<h2 className="h-styles">Pick the winning fauxtinition!</h2>
+						<ShowDefinitions
+							isJudge={isJudge}
+							definitionsObject={definitionsObject}
+						/>
+					</>
+				);
+
+			case "announcement":
+				return (
+					<>
+						<Scores players={players} scores={scores} roundNum={roundNum} />
 						<button
 							onClick={() => {
-								Rune.actions.generateWord();
-								Rune.actions.determineRoundStage();
-								setDisable(true);
+								Rune.actions.continueToNextRound();
 							}}
 						>
-							Start Game
+							Click to start the next round
 						</button>
-					</div>
+						<DisplayRoundWinner
+							definitionsObject={definitionsObject}
+							currentRoundWinner={currentRoundWinner}
+						/>
+					</>
 				);
-			}
-		} else if (roundStage === "submitDefinition") {
-			return (
-				<>
-					<Scores players={players} scores={scores} roundNum={roundNum} />
 
-					<RandomWord gameState={gameState} wordIndex={wordIndex} />
-					<h2 className="h-styles">Waiting for submittions</h2>
-					<div>
-						<Player
-							autoplay
-							loop
-							src="https://lottie.host/db71ff58-df28-4853-b540-483cd3eb522b/Nkv4dVvnSO.json"
-							className="loading-animation"
-						></Player>
-					</div>
-				</>
-			);
-		} else if (roundStage === "decisionMaking") {
-			return (
-				<>
-					<Scores players={players} scores={scores} roundNum={roundNum} />
-					<RandomWord gameState={gameState} wordIndex={wordIndex} />
-					<h2 className="h-styles">Pick the winning fauxtinition!</h2>
-					<ShowDefinitions
-						isJudge={isJudge}
-						definitionsObject={definitionsObject}
-					/>
-				</>
-			);
-		} else if (roundStage === "announcement") {
-			return (
-				<>
-					<Scores players={players} scores={scores} roundNum={roundNum} />
-					<button
-						onClick={() => {
-							Rune.actions.continueToNextRound();
-						}}
-					>
-						Click to start next round
-					</button>
-					<DisplayRoundWinner
-						definitionsObject={definitionsObject}
-						currentRoundWinner={currentRoundWinner}
-					/>
-				</>
-			);
-		} else if (roundStage === "announceWinner") {
-			return (
-				<>
-					<AnnounceWinner players={players} winner={winner} />
-				</>
-			);
+			case "announceWinner":
+				return (
+					<>
+						<AnnounceWinner players={players} winner={winner} />
+					</>
+				);
+
+			default:
+				return null;
 		}
 	};
-
 	return <>{renderJudgeStageView()}</>;
 };
 export default JudgeView;
