@@ -11,20 +11,15 @@ const { Rune } = window;
 
 export default function DefinitionInput({ currentPlayerId, definitions = {} }) {
 	const [inputVal, setInputVal] = useState("");
-	const [error, setError] = useState(""); // State for error message
+	const [error, setError] = useState("");
 
 	function handleDefinitionSubmission(e) {
 		e.preventDefault();
-
-		// Check if inputVal is empty
 		if (inputVal.trim() === "") {
-			setError("Please enter a definition."); // Set error message
-			return; // Prevent submission
+			setError("Please enter a definition.");
+			return;
 		}
-
-		// Reset error message
 		setError("");
-
 		Rune.actions.addDefinition({ currentPlayerId, inputVal });
 		setInputVal("");
 		Rune.actions.determineRoundStage();
@@ -34,11 +29,11 @@ export default function DefinitionInput({ currentPlayerId, definitions = {} }) {
 	return (
 		<>
 			{definitionSubmitted ? (
-				<h3 className="h-styles additional-margin">Faux-tinition submitted!</h3>
+				<h3 className="h-styles additional-margin">Fauxtinition submitted!</h3>
 			) : (
 				<form className="flex-container" onSubmit={handleDefinitionSubmission}>
 					<h3 className="h-styles additional-margin">
-						Submit your Faux-tinition
+						Submit your Fauxtinition
 					</h3>
 
 					<textarea
@@ -46,8 +41,6 @@ export default function DefinitionInput({ currentPlayerId, definitions = {} }) {
 						value={inputVal}
 						onChange={(e) => setInputVal(e.target.value)}
 					/>
-
-					{/* Display error message if input is empty */}
 					{error && <p className="error-message">{error}</p>}
 
 					<button className="additional-margin">Submit</button>

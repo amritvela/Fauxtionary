@@ -49,22 +49,18 @@ Rune.initLogic({
         game.startGame++;
       }
       if (game.startGame === 4) {
-        // if (!game.judgeIndex && game.judgeIndex !== 0) {
         if (game.judgeIndex === null) {
           const initialIndex = Math.floor(Math.random() * 3);
           game.judgeIndex = initialIndex;
         }
 
         //assigns the next judge index during the game.
-        // else if (game.judgeIndex > 3) {
         else if (game.judgeIndex === 3) {
           game.judgeIndex = 0;
         } else {
           game.judgeIndex++;
         }
       }
-      // console.log('judgeIndex in assignRoles', game.judgeIndex)
-
     },
 
     continueToNextScreen: (_, {game, allPlayerIds}) => {
@@ -84,7 +80,6 @@ Rune.initLogic({
       if (game.roundNum === 1) {
         game.judgeOrder = [...game.judgeOrder, currentPlayerID];
       }
-      // console.log('judgeIndex in assignJudgeArray', game.judgeIndex)
       if (game.judgeIndex !== null) {
         game.currentJudge = game.judgeOrder[game.judgeIndex];
       }
@@ -92,7 +87,6 @@ Rune.initLogic({
 
     //initial scores
     assignInitialScores: (currentPlayerID, { game, allPlayerIds }) => {
-      // console.log(Object.values(allPlayerIds));
       for (let player in allPlayerIds) {
         if (!game.scores[allPlayerIds[player]]) {
           game.scores[allPlayerIds[player]] = 0;
@@ -198,6 +192,3 @@ Rune.initLogic({
   },
 });
 
-/*
-
-runeState.players */

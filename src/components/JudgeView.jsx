@@ -41,15 +41,13 @@ const JudgeView = ({
 			if (disable === false) {
 				return (
 					<div className="flex-container">
-						<h2 style={{ textShadow: "2px 2px 0 #78e1ab", marginTop: "110px" }}>
-							Click to start round: {roundNum}
-						</h2>
+						<h2 className="heading-styles">Click to start round: {roundNum}</h2>
 						<div>
 							<Player
 								autoplay
 								loop
 								src="https://lottie.host/f037c018-4e23-4f44-9156-0f4347bc0057/QgqfHXgqar.json"
-								style={{ height: "300px", width: "300px" }}
+								className="book-animation"
 							></Player>
 						</div>
 						<button
@@ -70,13 +68,13 @@ const JudgeView = ({
 					<Scores players={players} scores={scores} roundNum={roundNum} />
 
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
-					<h2 className="h-styles">Wait for players submission</h2>
+					<h2 className="h-styles">Waiting for submittions</h2>
 					<div>
 						<Player
 							autoplay
 							loop
 							src="https://lottie.host/db71ff58-df28-4853-b540-483cd3eb522b/Nkv4dVvnSO.json"
-							style={{ height: "250px", maxWidth: "250px" }}
+							className="loading-animation"
 						></Player>
 					</div>
 				</>
@@ -86,7 +84,7 @@ const JudgeView = ({
 				<>
 					<Scores players={players} scores={scores} roundNum={roundNum} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
-					<h2 className="h-styles">Pick the winning faux-tinition!</h2>
+					<h2 className="h-styles">Pick the winning fauxtinition!</h2>
 					<ShowDefinitions
 						isJudge={isJudge}
 						definitionsObject={definitionsObject}
@@ -97,7 +95,6 @@ const JudgeView = ({
 			return (
 				<>
 					<Scores players={players} scores={scores} roundNum={roundNum} />
-					{/* <RandomWord gameState={gameState} wordIndex={wordIndex} /> */}
 					<button
 						onClick={() => {
 							Rune.actions.continueToNextRound();

@@ -72,7 +72,7 @@ function Instructions({ currentPlayerId, currentRoundWinner }) {
 								Continue to Next Round
 							</button>
 							<Player
-								style={{ margin: "20px", width: "80vw", height: "80vw" }}
+								className="pegions-handshake-animation"
 								autoplay
 								loop
 								src="https://lottie.host/3de560bf-1c93-4a08-abcf-bc760cfb718f/n9hdDE6wAS.json"

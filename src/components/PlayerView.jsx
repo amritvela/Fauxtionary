@@ -43,16 +43,13 @@ const PlayerView = ({
 		} else if (roundStage === "awaitingStart") {
 			return (
 				<div className="center-container">
-					<h2 style={{ textShadow: "2px 2px 0 #78e1ab", marginTop: "110px" }}>
-						Waiting to start round: {roundNum}
-					</h2>
-
+					<h2 className="heading-styles">Waiting to start round: {roundNum}</h2>
 					<div>
 						<Player
 							autoplay
 							loop
 							src="https://lottie.host/f037c018-4e23-4f44-9156-0f4347bc0057/QgqfHXgqar.json"
-							style={{ height: "300px", width: "300px" }}
+							className="book-animation"
 						></Player>
 					</div>
 				</div>
