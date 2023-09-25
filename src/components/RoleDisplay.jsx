@@ -61,7 +61,7 @@ const RoleDisplay = ({ isJudge, roundNum, currentPlayerId, players }) => {
 					<div className="bubble-bottom">
 						<h3 className="heading">Your role is : "Player"</h3>
 						<ul className="instructions">
-							<li>Come up with a fake definition for the given word</li>
+							<li>Come up with a faux definition for the given word</li>
 							<li>
 								Make the definition sound as humorous or absurd as possible
 							</li>

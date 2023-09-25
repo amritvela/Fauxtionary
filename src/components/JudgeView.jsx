@@ -70,7 +70,7 @@ const JudgeView = ({
 					<Scores players={players} scores={scores} roundNum={roundNum} />
 
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
-					<h2 className="h-styles">Wait for players submission</h2>
+					<h2 className="h-styles">Waiting for submittions</h2>
 					<div>
 						<Player
 							autoplay
@@ -86,7 +86,7 @@ const JudgeView = ({
 				<>
 					<Scores players={players} scores={scores} roundNum={roundNum} />
 					<RandomWord gameState={gameState} wordIndex={wordIndex} />
-					<h2 className="h-styles">Pick the winning faux-tinition!</h2>
+					<h2 className="h-styles">Pick the winning fauxtinition!</h2>
 					<ShowDefinitions
 						isJudge={isJudge}
 						definitionsObject={definitionsObject}
@@ -97,7 +97,6 @@ const JudgeView = ({
 			return (
 				<>
 					<Scores players={players} scores={scores} roundNum={roundNum} />
-					{/* <RandomWord gameState={gameState} wordIndex={wordIndex} /> */}
 					<button
 						onClick={() => {
 							Rune.actions.continueToNextRound();

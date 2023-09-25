@@ -20,7 +20,6 @@ function App() {
   const [roundNum, setRoundNum] = useState(null)
   const [winner, setWinner] = useState('')
 
-  console.log('GAME STATEEEE', gameState)
   useEffect(() => {
     import('./logic').then(() =>
       Rune.initClient({
@@ -45,8 +44,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-
-    // console.log({judgeId, currentPlayerId})
     if (judgeId !== '' && judgeId === currentPlayerId) {
       setIsJudge(true);
     } else {

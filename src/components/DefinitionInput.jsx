@@ -34,11 +34,11 @@ export default function DefinitionInput({ currentPlayerId, definitions = {} }) {
 	return (
 		<>
 			{definitionSubmitted ? (
-				<h3 className="h-styles additional-margin">Faux-tinition submitted!</h3>
+				<h3 className="h-styles additional-margin">Fauxtinition submitted!</h3>
 			) : (
 				<form className="flex-container" onSubmit={handleDefinitionSubmission}>
 					<h3 className="h-styles additional-margin">
-						Submit your Faux-tinition
+						Submit your Fauxtinition
 					</h3>
 
 					<textarea

@@ -10,7 +10,6 @@ export default function ShowDefinitions({
 	players,
 }) {
 	const { definitions, stateFlag } = definitionsObject;
-	console.log("here are the players", players);
 	function onclickHandler(e) {
 		Rune.actions.incrementScore(e);
 	}
