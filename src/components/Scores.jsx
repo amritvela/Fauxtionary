@@ -16,8 +16,10 @@ function Scores({ players, scores, roundNum }) {
 								src={playerInfoObj.avatarUrl}
 								className="avatar"
 							/>
-							<div>{playerInfoObj.displayName}</div>
-							<div>{scores[playerInfoObj.playerId]}</div>
+							<div className="name-score">
+								<div className="player-name">{playerInfoObj.displayName}</div>
+								<div>{scores[playerInfoObj.playerId]}</div>
+							</div>
 						</div>
 					</div>
 				))}
@@ -27,7 +29,7 @@ function Scores({ players, scores, roundNum }) {
 
 	return (
 		<div className="scores-component">
-			<h3 className="h-styles">Round # {roundNum}</h3>
+			<h3 className="scores-title">Round # {roundNum}</h3>
 			{displayInfo()}
 		</div>
 	);
