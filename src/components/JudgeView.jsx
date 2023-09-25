@@ -97,11 +97,7 @@ const JudgeView = ({
 			return (
 				<>
 					<Scores players={players} scores={scores} roundNum={roundNum} />
-					<RandomWord gameState={gameState} wordIndex={wordIndex} />
-					<DisplayRoundWinner
-						definitionsObject={definitionsObject}
-						currentRoundWinner={currentRoundWinner}
-					/>
+					{/* <RandomWord gameState={gameState} wordIndex={wordIndex} /> */}
 					<button
 						onClick={() => {
 							Rune.actions.continueToNextRound();
@@ -109,6 +105,10 @@ const JudgeView = ({
 					>
 						Click to start next round
 					</button>
+					<DisplayRoundWinner
+						definitionsObject={definitionsObject}
+						currentRoundWinner={currentRoundWinner}
+					/>
 				</>
 			);
 		} else if (roundStage === "announceWinner") {
