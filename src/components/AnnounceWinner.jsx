@@ -3,7 +3,7 @@ import { Player } from "@lottiefiles/react-lottie-player";
 
 const AnnounceWinner = ({ players, winner }) => {
 	return (
-		<div className="avatar-box flex-container additional-margin-100">
+		<div className="avatar-box flex-container">
 			<h1 className="winner-heading">The Winner is!</h1>
 			<img
 				alt={`player-avatar`}
